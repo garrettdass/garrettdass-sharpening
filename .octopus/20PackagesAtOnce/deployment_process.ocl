@@ -1,0 +1,279 @@
+step "Deploy a Package modified" {
+    condition = "Always"
+    properties = {
+        Octopus.Action.TargetRoles = "Dev"
+    }
+
+    action {
+        properties = {
+            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.PackageId = "RandomQuotesOne"
+            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Version = "0"
+            Package = "{\"PackageId\":\"RandomQuotesOne\",\"FeedId\":\"feeds-builtin\"}"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "Octopus Server (built-in)"
+            package_id = "RandomQuotesOne"
+            properties = {
+                PackageParameterName = "Package"
+                SelectionMode = "deferred"
+            }
+        }
+    }
+}
+
+step "Deploy a Package modified - clone (9)" {
+    properties = {
+        Octopus.Action.TargetRoles = "Dev"
+    }
+    start_trigger = "StartWithPrevious"
+
+    action {
+        properties = {
+            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.PackageId = "RandomQuotesNine"
+            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Version = "0"
+            Package = "{\"PackageId\":\"RandomQuotesNine\",\"FeedId\":\"feeds-builtin\"}"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "Octopus Server (built-in)"
+            package_id = "RandomQuotesNine"
+            properties = {
+                PackageParameterName = "Package"
+                SelectionMode = "deferred"
+            }
+        }
+    }
+}
+
+step "Deploy a Package modified - clone (8)" {
+    properties = {
+        Octopus.Action.TargetRoles = "Dev"
+    }
+    start_trigger = "StartWithPrevious"
+
+    action {
+        properties = {
+            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.PackageId = "RandomQuotesEight"
+            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Version = "0"
+            Package = "{\"PackageId\":\"RandomQuotesEight\",\"FeedId\":\"feeds-builtin\"}"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "Octopus Server (built-in)"
+            package_id = "RandomQuotesEight"
+            properties = {
+                PackageParameterName = "Package"
+                SelectionMode = "deferred"
+            }
+        }
+    }
+}
+
+step "Deploy a Package modified - clone (7)" {
+    properties = {
+        Octopus.Action.TargetRoles = "Dev"
+    }
+    start_trigger = "StartWithPrevious"
+
+    action {
+        properties = {
+            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.PackageId = "RandomQuotesSeven"
+            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Version = "0"
+            Package = "{\"PackageId\":\"RandomQuotesSeven\",\"FeedId\":\"feeds-builtin\"}"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "Octopus Server (built-in)"
+            package_id = "RandomQuotesSeven"
+            properties = {
+                PackageParameterName = "Package"
+                SelectionMode = "deferred"
+            }
+        }
+    }
+}
+
+step "Deploy a Package modified - clone (6)" {
+    properties = {
+        Octopus.Action.TargetRoles = "Dev"
+    }
+    start_trigger = "StartWithPrevious"
+
+    action {
+        properties = {
+            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.PackageId = "RandomQuotesSix"
+            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Version = "0"
+            Package = "{\"PackageId\":\"RandomQuotesSix\",\"FeedId\":\"feeds-builtin\"}"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "Octopus Server (built-in)"
+            package_id = "RandomQuotesSix"
+            properties = {
+                PackageParameterName = "Package"
+                SelectionMode = "deferred"
+            }
+        }
+    }
+}
+
+step "Deploy a Package modified - clone (5)" {
+    properties = {
+        Octopus.Action.TargetRoles = "Dev"
+    }
+    start_trigger = "StartWithPrevious"
+
+    action {
+        properties = {
+            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.PackageId = "RandomQuotesFive"
+            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Version = "0"
+            Package = "{\"PackageId\":\"RandomQuotesFive\",\"FeedId\":\"feeds-builtin\"}"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "Octopus Server (built-in)"
+            package_id = "RandomQuotesFive"
+            properties = {
+                PackageParameterName = "Package"
+                SelectionMode = "deferred"
+            }
+        }
+    }
+}
+
+step "Deploy a Package modified - clone (4)" {
+    properties = {
+        Octopus.Action.TargetRoles = "Dev"
+    }
+    start_trigger = "StartWithPrevious"
+
+    action {
+        properties = {
+            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.PackageId = "RandomQuotesFour"
+            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Version = "0"
+            Package = "{\"PackageId\":\"RandomQuotesFour\",\"FeedId\":\"feeds-builtin\"}"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "Octopus Server (built-in)"
+            package_id = "RandomQuotesFour"
+            properties = {
+                PackageParameterName = "Package"
+                SelectionMode = "deferred"
+            }
+        }
+    }
+}
+
+step "Deploy a Package modified - clone (3)" {
+    properties = {
+        Octopus.Action.TargetRoles = "Dev"
+    }
+    start_trigger = "StartWithPrevious"
+
+    action {
+        properties = {
+            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.PackageId = "RandomQuotesThree"
+            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Version = "0"
+            Package = "{\"PackageId\":\"RandomQuotesThree\",\"FeedId\":\"feeds-builtin\"}"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "Octopus Server (built-in)"
+            package_id = "RandomQuotesThree"
+            properties = {
+                PackageParameterName = "Package"
+                SelectionMode = "deferred"
+            }
+        }
+    }
+}
+
+step "Deploy a Package modified - clone (2)" {
+    properties = {
+        Octopus.Action.TargetRoles = "Dev"
+    }
+    start_trigger = "StartWithPrevious"
+
+    action {
+        properties = {
+            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.PackageId = "RandomQuotesTwo"
+            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Version = "0"
+            Package = "{\"PackageId\":\"RandomQuotesTwo\",\"FeedId\":\"feeds-builtin\"}"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "Octopus Server (built-in)"
+            package_id = "RandomQuotesTwo"
+            properties = {
+                PackageParameterName = "Package"
+                SelectionMode = "deferred"
+            }
+        }
+    }
+}
+
+step "Deploy a Package modified - clone (1)" {
+    properties = {
+        Octopus.Action.TargetRoles = "Dev"
+    }
+    start_trigger = "StartWithPrevious"
+
+    action {
+        properties = {
+            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.PackageId = "RandomQuotesOne"
+            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Version = "0"
+            Package = "{\"PackageId\":\"RandomQuotesOne\",\"FeedId\":\"feeds-builtin\"}"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "Octopus Server (built-in)"
+            package_id = "RandomQuotesOne"
+            properties = {
+                PackageParameterName = "Package"
+                SelectionMode = "deferred"
+            }
+        }
+    }
+}
