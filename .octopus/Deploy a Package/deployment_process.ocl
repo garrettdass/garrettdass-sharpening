@@ -11,14 +11,14 @@ step "Deploy a Package" {
             Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
-            Octopus.Action.Package.PackageId = "CreateReleaseTest"
+            Octopus.Action.Package.PackageId = "js-to-do"
         }
         worker_pool_variable = ""
 
         packages {
             acquisition_location = "Server"
             feed = "Octopus Server (built-in)"
-            package_id = "CreateReleaseTest"
+            package_id = "js-to-do"
             properties = {
                 SelectionMode = "immediate"
             }
