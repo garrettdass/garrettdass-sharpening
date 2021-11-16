@@ -1,0 +1,8 @@
+channel "Channel 2" {
+    description = ""
+    lifecycle = "Dev cycle"
+}
+
+channel "Default" {
+    is_default = true
+}
