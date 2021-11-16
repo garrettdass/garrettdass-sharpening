@@ -8,7 +8,7 @@ step "Deploy a Package modified" {
         properties = {
             Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
             Octopus.Action.Package.PackageId = "RandomQuotesOne"
-            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Id = "ActionTemplates-261"
             Octopus.Action.Template.Version = "0"
             Package = "{\"PackageId\":\"RandomQuotesOne\",\"FeedId\":\"feeds-builtin\"}"
         }
@@ -36,7 +36,7 @@ step "Deploy a Package modified - clone (9)" {
         properties = {
             Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
             Octopus.Action.Package.PackageId = "RandomQuotesNine"
-            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Id = "ActionTemplates-261"
             Octopus.Action.Template.Version = "0"
             Package = "{\"PackageId\":\"RandomQuotesNine\",\"FeedId\":\"feeds-builtin\"}"
         }
@@ -64,7 +64,7 @@ step "Deploy a Package modified - clone (8)" {
         properties = {
             Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
             Octopus.Action.Package.PackageId = "RandomQuotesEight"
-            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Id = "ActionTemplates-261"
             Octopus.Action.Template.Version = "0"
             Package = "{\"PackageId\":\"RandomQuotesEight\",\"FeedId\":\"feeds-builtin\"}"
         }
@@ -92,7 +92,7 @@ step "Deploy a Package modified - clone (7)" {
         properties = {
             Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
             Octopus.Action.Package.PackageId = "RandomQuotesSeven"
-            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Id = "ActionTemplates-261"
             Octopus.Action.Template.Version = "0"
             Package = "{\"PackageId\":\"RandomQuotesSeven\",\"FeedId\":\"feeds-builtin\"}"
         }
@@ -120,7 +120,7 @@ step "Deploy a Package modified - clone (6)" {
         properties = {
             Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
             Octopus.Action.Package.PackageId = "RandomQuotesSix"
-            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Id = "ActionTemplates-261"
             Octopus.Action.Template.Version = "0"
             Package = "{\"PackageId\":\"RandomQuotesSix\",\"FeedId\":\"feeds-builtin\"}"
         }
@@ -148,7 +148,7 @@ step "Deploy a Package modified - clone (5)" {
         properties = {
             Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
             Octopus.Action.Package.PackageId = "RandomQuotesFive"
-            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Id = "ActionTemplates-261"
             Octopus.Action.Template.Version = "0"
             Package = "{\"PackageId\":\"RandomQuotesFive\",\"FeedId\":\"feeds-builtin\"}"
         }
@@ -176,7 +176,7 @@ step "Deploy a Package modified - clone (4)" {
         properties = {
             Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
             Octopus.Action.Package.PackageId = "RandomQuotesFour"
-            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Id = "ActionTemplates-261"
             Octopus.Action.Template.Version = "0"
             Package = "{\"PackageId\":\"RandomQuotesFour\",\"FeedId\":\"feeds-builtin\"}"
         }
@@ -204,7 +204,7 @@ step "Deploy a Package modified - clone (3)" {
         properties = {
             Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
             Octopus.Action.Package.PackageId = "RandomQuotesThree"
-            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Id = "ActionTemplates-261"
             Octopus.Action.Template.Version = "0"
             Package = "{\"PackageId\":\"RandomQuotesThree\",\"FeedId\":\"feeds-builtin\"}"
         }
@@ -232,7 +232,7 @@ step "Deploy a Package modified - clone (2)" {
         properties = {
             Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
             Octopus.Action.Package.PackageId = "RandomQuotesTwo"
-            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Id = "ActionTemplates-261"
             Octopus.Action.Template.Version = "0"
             Package = "{\"PackageId\":\"RandomQuotesTwo\",\"FeedId\":\"feeds-builtin\"}"
         }
@@ -260,7 +260,7 @@ step "Deploy a Package modified - clone (1)" {
         properties = {
             Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
             Octopus.Action.Package.PackageId = "RandomQuotesOne"
-            Octopus.Action.Template.Id = "ActionTemplates-241"
+            Octopus.Action.Template.Id = "ActionTemplates-261"
             Octopus.Action.Template.Version = "0"
             Package = "{\"PackageId\":\"RandomQuotesOne\",\"FeedId\":\"feeds-builtin\"}"
         }
