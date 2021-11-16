@@ -1,7 +1,7 @@
 step "Deploy a Package modified" {
     condition = "Always"
     properties = {
-        Octopus.Action.TargetRoles = "Dev"
+        Octopus.Action.TargetRoles = "Test"
     }
 
     action {
@@ -28,7 +28,7 @@ step "Deploy a Package modified" {
 
 step "Deploy a Package modified - clone (9)" {
     properties = {
-        Octopus.Action.TargetRoles = "Dev"
+        Octopus.Action.TargetRoles = "Test"
     }
     start_trigger = "StartWithPrevious"
 
@@ -56,7 +56,7 @@ step "Deploy a Package modified - clone (9)" {
 
 step "Deploy a Package modified - clone (8)" {
     properties = {
-        Octopus.Action.TargetRoles = "Dev"
+        Octopus.Action.TargetRoles = "Test"
     }
     start_trigger = "StartWithPrevious"
 
@@ -84,7 +84,7 @@ step "Deploy a Package modified - clone (8)" {
 
 step "Deploy a Package modified - clone (7)" {
     properties = {
-        Octopus.Action.TargetRoles = "Dev"
+        Octopus.Action.TargetRoles = "Test"
     }
     start_trigger = "StartWithPrevious"
 
@@ -112,7 +112,7 @@ step "Deploy a Package modified - clone (7)" {
 
 step "Deploy a Package modified - clone (6)" {
     properties = {
-        Octopus.Action.TargetRoles = "Dev"
+        Octopus.Action.TargetRoles = "Test"
     }
     start_trigger = "StartWithPrevious"
 
@@ -140,7 +140,7 @@ step "Deploy a Package modified - clone (6)" {
 
 step "Deploy a Package modified - clone (5)" {
     properties = {
-        Octopus.Action.TargetRoles = "Dev"
+        Octopus.Action.TargetRoles = "Test"
     }
     start_trigger = "StartWithPrevious"
 
@@ -168,7 +168,7 @@ step "Deploy a Package modified - clone (5)" {
 
 step "Deploy a Package modified - clone (4)" {
     properties = {
-        Octopus.Action.TargetRoles = "Dev"
+        Octopus.Action.TargetRoles = "Test"
     }
     start_trigger = "StartWithPrevious"
 
@@ -196,7 +196,7 @@ step "Deploy a Package modified - clone (4)" {
 
 step "Deploy a Package modified - clone (3)" {
     properties = {
-        Octopus.Action.TargetRoles = "Dev"
+        Octopus.Action.TargetRoles = "Test"
     }
     start_trigger = "StartWithPrevious"
 
@@ -224,7 +224,7 @@ step "Deploy a Package modified - clone (3)" {
 
 step "Deploy a Package modified - clone (2)" {
     properties = {
-        Octopus.Action.TargetRoles = "Dev"
+        Octopus.Action.TargetRoles = "Test"
     }
     start_trigger = "StartWithPrevious"
 
@@ -252,7 +252,7 @@ step "Deploy a Package modified - clone (2)" {
 
 step "Deploy a Package modified - clone (1)" {
     properties = {
-        Octopus.Action.TargetRoles = "Dev"
+        Octopus.Action.TargetRoles = "Test"
     }
     start_trigger = "StartWithPrevious"
 
