@@ -1,0 +1,107 @@
+step "Create test web service" {
+
+    action {
+        action_type = "Octopus.AzurePowerShell"
+        properties = {
+            Octopus.Action.Azure.AccountId = "Azure Support Sandbox"
+            Octopus.Action.RunOnServer = "true"
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                # Octopus variables
+                $environment = $OctopusParameters['Octopus.Environment.Name'].Replace(" ","").ToLower()
+                $releaseNumber = $OctopusParameters['Octopus.Release.Number'].Replace(".", "-")
+                $deploymentId = $OctopusParameters['Octopus.Deployment.Id'].ToLower()
+                
+                # A unique name based on the Octopus environment, release, and deployment
+                $uniqueName = "$userPrefix-$environment-$releaseNumber-$deploymentId"
+                $rgLocation = "West US"
+                
+                # Echo uniqueName prior to creation
+                Write-Output "Unique name for resources is: " $uniqueName
+                
+                #Create a resource group
+                New-AzureRmResourceGroup -Name $uniqueName -Location $rgLocation
+                
+                #Create an app service plan in Free Tier
+                New-AzureRmAppServicePlan -Name $uniqueName -Location $rgLocation -ResourceGroupName $uniqueName -Tier Free
+                
+                #Create a web app
+                New-AzureRmWebApp -Name $uniqueName -Location $rgLocation -AppServicePlan $uniqueName -ResourceGroupName $uniqueName
+                
+                # Create new target in Octopus
+                New-OctopusAzureWebAppTarget -Name $uniqueName -AzureWebApp $uniqueName -AzureResourceGroupName $uniqueName -OctopusRoles $octoRole -OctopusDefaultWorkerPoolIdOrName $octoWorkerPool
+                
+            EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+            OctopusUseBundledTooling = "True"
+        }
+        worker_pool = "Hosted Windows"
+    }
+}
+
+step "Deploy an Azure App Service" {
+    properties = {
+        Octopus.Action.TargetRoles = "azure-web-app"
+    }
+
+    action {
+        action_type = "Octopus.AzureAppService"
+        properties = {
+            Octopus.Action.Azure.DeploymentType = "Package"
+            Octopus.Action.EnabledFeatures = "Octopus.Features.JsonConfigurationVariables,Octopus.Features.ConfigurationTransforms,Octopus.Features.SubstituteInFiles"
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.PackageId = "js-to-do"
+            Octopus.Action.RunOnServer = "true"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "Hosted Ubuntu"
+
+        container {
+            feed = "Docker Hub"
+            image = "octopuslabs/azure-workertools"
+        }
+
+        packages {
+            acquisition_location = "Server"
+            feed = "Octopus Server (built-in)"
+            package_id = "js-to-do"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
+
+step "Tear down test web service" {
+
+    action {
+        action_type = "Octopus.AzurePowerShell"
+        properties = {
+            Octopus.Action.Azure.AccountId = "Azure Support Sandbox"
+            Octopus.Action.RunOnServer = "true"
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                # Octopus variables
+                $environment = $OctopusParameters['Octopus.Environment.Name'].Replace(" ","").ToLower()
+                $releaseNumber = $OctopusParameters['Octopus.Release.Number'].Replace(".", "-")
+                $deploymentId = $OctopusParameters['Octopus.Deployment.Id'].ToLower()
+                $uniqueName = "$userPrefix-$environment-$releaseNumber-$deploymentId"
+                
+                # Notify user of the deployed URL
+                Write-Warning "Your web app should be hosted at: https://$uniqueName.azurewebsites.net"
+                
+                # Let the website sit live for specified time
+                Write-Warning "The website will remain active for $websiteLiveTime seconds..."
+                Start-Sleep -s $websiteLiveTime
+                
+                # Tear down test web serivce (delete resource group)
+                Remove-AzureRmResourceGroup -Name $uniqueName -Force
+                Remove-OctopusTarget -targetIdOrName $uniqueName
+            EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+            OctopusUseBundledTooling = "True"
+        }
+        worker_pool = "Hosted Windows"
+    }
+}
