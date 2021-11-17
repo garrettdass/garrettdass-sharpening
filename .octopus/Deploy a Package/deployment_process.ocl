@@ -1,6 +1,6 @@
 step "Deploy a Package" {
     properties = {
-        Octopus.Action.TargetRoles = "Test"
+        Octopus.Action.TargetRoles = "Test,Prod"
     }
 
     action {
