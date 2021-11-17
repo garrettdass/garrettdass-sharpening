@@ -1,0 +1,23 @@
+step "Run a Script" {
+    properties = {
+        Octopus.Action.TargetRoles = "Dev,Prod"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                $Base64Translated = "#{Base64PW | ToBase64}"
+                $Base64SubTranslated = "#{Base64PWSub | ToBase64}"
+                $combined = -join("$Base64Translated","$Base64PWSubTranslated")
+                Write-Host #{Base64PW}
+                Write-Host $combined
+                Write-Host $Base64Translated
+            EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool_variable = ""
+    }
+}
