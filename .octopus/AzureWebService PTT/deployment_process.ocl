@@ -11,7 +11,7 @@ step "Create test web service" {
                 $deploymentId = $OctopusParameters['Octopus.Deployment.Id'].ToLower()
                 
                 # A unique name based on the Octopus environment, release, and deployment
-                $uniqueName = "$userPrefix-$environment-$releaseNumber-$deploymentId"
+                $uniqueName = "$environment-$releaseNumber-$deploymentId"
                 $rgLocation = "West US"
                 
                 # Echo uniqueName prior to creation
