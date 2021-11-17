@@ -50,7 +50,6 @@ step "Deploy an Azure App Service" {
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
             Octopus.Action.Package.PackageId = "js-to-do"
-            Octopus.Action.RunOnServer = "true"
             OctopusUseBundledTooling = "False"
         }
 
@@ -75,8 +74,7 @@ step "Tear down test web service" {
     action {
         action_type = "Octopus.AzurePowerShell"
         properties = {
-            Octopus.Action.Azure.AccountId = "Azure Support Sandbox"
-            Octopus.Action.RunOnServer = "true"
+            Octopus.Action.Azure.AccountId = "Azure"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 # Octopus variables
                 $environment = $OctopusParameters['Octopus.Environment.Name'].Replace(" ","").ToLower()
