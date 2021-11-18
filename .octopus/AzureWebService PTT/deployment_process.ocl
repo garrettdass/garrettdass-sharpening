@@ -4,6 +4,7 @@ step "Create test web service" {
         action_type = "Octopus.AzurePowerShell"
         properties = {
             Octopus.Action.Azure.AccountId = "Azure"
+            Octopus.Action.RunOnServer = "true"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 # Octopus variables
                 $environment = $OctopusParameters['Octopus.Environment.Name'].Replace(" ","").ToLower()
@@ -32,7 +33,12 @@ step "Create test web service" {
             EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
-            OctopusUseBundledTooling = "True"
+            OctopusUseBundledTooling = "False"
+        }
+
+        container {
+            feed = "Docker Hub"
+            image = "octopusdeploy/worker-tools:3.2.0-windows.ltsc2019"
         }
     }
 }
