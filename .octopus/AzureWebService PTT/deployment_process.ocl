@@ -33,12 +33,7 @@ step "Create test web service" {
             EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
-            OctopusUseBundledTooling = "False"
-        }
-
-        container {
-            feed = "Docker Hub"
-            image = "octopusdeploy/worker-tools:3.2.0-windows.ltsc2019"
+            OctopusUseBundledTooling = "True"
         }
     }
 }
