@@ -7,9 +7,8 @@ step "Run a Script" {
         action_type = "Octopus.Script"
         properties = {
             Octopus.Action.RunOnServer = "false"
-            Octopus.Action.Script.ScriptBody = <<-EOT
-                <<-EOT
-                                version=$(get_octopusvariable "Octopus.Release.Number")
+            Octopus.Action.Script.ScriptBody =  
+                               version=$(get_octopusvariable "Octopus.Release.Number")
                                 configFolderPath=/etc/archlogs
                                 configFilePath=$configFolderPath/localconfig.json
                                 
@@ -26,8 +25,6 @@ step "Run a Script" {
                                 } else {
                                 	write-host \"File '$configFilePath' not found\"
                                 }"
-                            EOT
-            EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "Bash"
         }
