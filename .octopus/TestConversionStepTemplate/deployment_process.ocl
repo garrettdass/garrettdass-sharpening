@@ -1,0 +1,13 @@
+step "Test StepTemplateCaC" {
+    properties = {
+        Octopus.Action.TargetRoles = "Prod"
+    }
+
+    action {
+        properties = {
+            Octopus.Action.Template.Id = "ActionTemplates-341"
+            Octopus.Action.Template.Version = "0"
+        }
+        worker_pool_variable = ""
+    }
+}
