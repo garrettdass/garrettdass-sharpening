@@ -3,7 +3,7 @@ step "AWS - Launch 2019 w containers" {
     action {
         is_disabled = true
         properties = {
-            Octopus.Action.Template.Id = "ActionTemplates-101"
+            Octopus.Action.Template.Id = "ActionTemplates-261"
             Octopus.Action.Template.Version = "1"
             odAccessKey = "AKIA6DEJDS6O4U6OXIOG"
             odImageId = "ami-0f25b344af3f73199"
@@ -32,7 +32,7 @@ step "SetGroupofVariables" {
     action {
         properties = {
             Octopus.Action.RunOnServer = "true"
-            Octopus.Action.Template.Id = "ActionTemplates-143"
+            Octopus.Action.Template.Id = "ActionTemplates-261"
             Octopus.Action.Template.Version = "2"
             SetGroupOfVars_Company = "This is something else"
         }
@@ -62,7 +62,7 @@ step "Linux Get Free Space" {
     action {
         properties = {
             Octopus.Action.RunOnServer = "false"
-            Octopus.Action.Template.Id = "ActionTemplates-22"
+            Octopus.Action.Template.Id = "ActionTemplates-261
             Octopus.Action.Template.Version = "1"
         }
         worker_pool_variable = ""
