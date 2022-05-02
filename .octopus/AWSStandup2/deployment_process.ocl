@@ -3,8 +3,6 @@ step "AWS - Launch 2019 w containers" {
     action {
         is_disabled = true
         properties = {
-            Octopus.Action.Template.Id = "ActionTemplates-101"
-            Octopus.Action.Template.Version = "1"
             odAccessKey = "AKIA6DEJDS6O4U6OXIOG"
             odImageId = "ami-0f25b344af3f73199"
             odInstanceType = "t2.micro"
