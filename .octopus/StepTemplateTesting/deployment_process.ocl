@@ -1,0 +1,13 @@
+step "Deploy a Package modified" {
+    properties = {
+        Octopus.Action.TargetRoles = "Test"
+    }
+
+    action {
+        properties = {
+            Octopus.Action.Template.Id = "ActionTemplates-261"
+            Octopus.Action.Template.Version = "1"
+        }
+        worker_pool_variable = ""
+    }
+}
