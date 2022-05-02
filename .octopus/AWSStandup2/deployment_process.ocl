@@ -17,7 +17,7 @@ step "Deploy a Package" {
 
         packages {
             acquisition_location = "Server"
-            feed = "Octopus Server (built-in)"
+            feed = "Feeds-1181"
             package_id = "js-to-do"
             properties = {
                 SelectionMode = "immediate"
