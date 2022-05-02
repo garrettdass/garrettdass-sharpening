@@ -5,7 +5,7 @@ step "Deploy a Package modified" {
 
     action {
         properties = {
-            Octopus.Action.Template.Id = "ActionTemplates-381"
+            Octopus.Action.Template.Id = "ActionTemplates-261"
             Octopus.Action.Template.Version = "1"
         }
         worker_pool_variable = ""
