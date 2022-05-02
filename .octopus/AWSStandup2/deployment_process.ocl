@@ -27,19 +27,6 @@ step "AWS - Launch 2019 w containers" {
     }
 }
 
-step "SetGroupofVariables" {
-
-    action {
-        properties = {
-            Octopus.Action.RunOnServer = "true"
-            Octopus.Action.Template.Id = "ActionTemplates-143"
-            Octopus.Action.Template.Version = "2"
-            SetGroupOfVars_Company = "This is something else"
-        }
-        worker_pool = "Default Worker Pool"
-    }
-}
-
 step "Run a Script" {
 
     action {
