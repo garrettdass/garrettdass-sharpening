@@ -4,6 +4,5 @@ connectivity_policy {
 versioning_strategy {
 
     donor_package {
-        step = ""
     }
 }
