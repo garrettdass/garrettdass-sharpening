@@ -47,8 +47,6 @@ step "Linux Get Free Space" {
     action {
         properties = {
             Octopus.Action.RunOnServer = "false"
-            Octopus.Action.Template.Id = "ActionTemplates-22"
-            Octopus.Action.Template.Version = "1"
         }
         worker_pool_variable = ""
     }
