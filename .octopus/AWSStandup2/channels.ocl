@@ -1,3 +1,8 @@
 channel "Default" {
     is_default = true
 }
+
+channel "Channel2" {
+    description = ""
+    lifecycle = "Prod"
+}
