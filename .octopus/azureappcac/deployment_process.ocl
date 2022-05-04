@@ -2,7 +2,6 @@ step "Create test web service" {
 
     action {
         action_type = "Octopus.AzurePowerShell"
-        is_disabled = true
         properties = {
             Octopus.Action.Azure.AccountId = "Azure Support Sandbox"
             Octopus.Action.Script.ScriptBody = <<-EOT
@@ -35,7 +34,6 @@ step "Create test web service" {
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "True"
         }
-        worker_pool = "Hosted Windows"
     }
 }
 
@@ -54,7 +52,6 @@ step "Deploy an Azure App Service" {
             Octopus.Action.Package.PackageId = "js-to-do"
             OctopusUseBundledTooling = "False"
         }
-        worker_pool = "Hosted Ubuntu"
 
         container {
             feed = "Docker Hub"
@@ -101,7 +98,6 @@ step "Tear down test web service" {
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "True"
         }
-        worker_pool = "Hosted Windows"
     }
 }
 
@@ -110,6 +106,7 @@ step "Run a Script" {
     action {
         action_type = "Octopus.Script"
         properties = {
+            Octopus.Action.RunOnServer = "true"
             Octopus.Action.Script.ScriptBody = "Write-Host \"Hello World\""
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
