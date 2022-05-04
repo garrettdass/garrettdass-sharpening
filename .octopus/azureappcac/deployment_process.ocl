@@ -4,6 +4,7 @@ step "Create test web service" {
         action_type = "Octopus.AzurePowerShell"
         properties = {
             Octopus.Action.Azure.AccountId = "Azure Support Sandbox"
+            Octopus.Action.RunOnServer = "true"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 # Octopus variables
                 $environment = $OctopusParameters['Octopus.Environment.Name'].Replace(" ","").ToLower()
@@ -111,6 +112,5 @@ step "Run a Script" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
-        worker_pool = "Hosted Windows"
     }
 }
