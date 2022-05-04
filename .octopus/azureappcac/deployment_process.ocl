@@ -44,7 +44,7 @@ step "Deploy an Azure App Service" {
         Octopus.Action.TargetRoles = "azure-web-app"
     }
 
-    action {
+    action "Deploy an Azure App Service" {
         action_type = "Octopus.AzureAppService"
         properties = {
             Octopus.Action.Azure.DeploymentType = "Package"
@@ -65,11 +65,8 @@ step "Deploy an Azure App Service" {
             }
         }
     }
-}
 
-step "Run a Script" {
-
-    action {
+    action "Run a Script" {
         action_type = "Octopus.Script"
         properties = {
             Octopus.Action.RunOnServer = "true"
