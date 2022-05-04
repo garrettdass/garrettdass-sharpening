@@ -115,3 +115,16 @@ step "Tear down test web service" {
         }
     }
 }
+
+step "Run a Script but better" {
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.RunOnServer = "true"
+            Octopus.Action.Script.ScriptBody = "Write-Host \"Does this try to log in as well?\""
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+    }
+}
