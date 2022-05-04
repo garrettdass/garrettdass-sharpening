@@ -43,7 +43,7 @@ step "Deploy an Azure App Service" {
         Octopus.Action.TargetRoles = "azure-web-app"
     }
 
-    action {
+    action "Deploy an Azure App Service" {
         action_type = "Octopus.AzureAppService"
         properties = {
             Octopus.Action.Azure.DeploymentType = "Package"
@@ -63,6 +63,17 @@ step "Deploy an Azure App Service" {
                 SelectionMode = "immediate"
             }
         }
+    }
+
+    action "Run a Script" {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptBody = "Write-Host \"Hello world\""
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool_variable = ""
     }
 }
 
@@ -94,19 +105,6 @@ step "Tear down test web service" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "True"
-        }
-    }
-}
-
-step "Run a Script" {
-
-    action {
-        action_type = "Octopus.Script"
-        properties = {
-            Octopus.Action.RunOnServer = "true"
-            Octopus.Action.Script.ScriptBody = "Write-Host \"Hello World\""
-            Octopus.Action.Script.ScriptSource = "Inline"
-            Octopus.Action.Script.Syntax = "PowerShell"
         }
     }
 }
