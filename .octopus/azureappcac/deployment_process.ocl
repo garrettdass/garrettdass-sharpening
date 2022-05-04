@@ -68,19 +68,15 @@ step "Deploy an Azure App Service" {
 }
 
 step "Run a Script" {
-    properties = {
-        Octopus.Action.TargetRoles = "azure-web-app"
-    }
 
     action {
         action_type = "Octopus.Script"
         properties = {
-            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.RunOnServer = "true"
             Octopus.Action.Script.ScriptBody = "Write-Host \"Hello world\""
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
-        worker_pool_variable = ""
     }
 }
 
