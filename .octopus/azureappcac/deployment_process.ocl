@@ -51,12 +51,8 @@ step "Deploy an Azure App Service" {
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
             Octopus.Action.Package.PackageId = "js-to-do"
+            Octopus.Action.RunOnServer = "true"
             OctopusUseBundledTooling = "False"
-        }
-
-        container {
-            feed = "Docker Hub"
-            image = "octopuslabs/azure-workertools"
         }
 
         packages {
