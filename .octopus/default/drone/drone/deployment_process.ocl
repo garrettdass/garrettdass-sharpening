@@ -14,3 +14,17 @@ step "Run a Script" {
         worker_pool_variable = ""
     }
 }
+
+step "Deploy a Package modified" {
+    properties = {
+        Octopus.Action.TargetRoles = "Prod"
+    }
+
+    action {
+        properties = {
+            Octopus.Action.Template.Id = "ActionTemplates-261"
+            Octopus.Action.Template.Version = "2"
+        }
+        worker_pool_variable = ""
+    }
+}
