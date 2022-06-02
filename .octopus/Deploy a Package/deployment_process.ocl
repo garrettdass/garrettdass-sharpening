@@ -25,3 +25,18 @@ step "Deploy a Package" {
         }
     }
 }
+
+step "Deploy a Package modified" {
+    properties = {
+        Octopus.Action.TargetRoles = "Prod"
+    }
+
+    action {
+        channels = ["Default"]
+        properties = {
+            Octopus.Action.Template.Id = "ActionTemplates-261"
+            Octopus.Action.Template.Version = "3"
+        }
+        worker_pool_variable = ""
+    }
+}
