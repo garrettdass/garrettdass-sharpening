@@ -35,7 +35,7 @@ step "Deploy a Package modified" {
         channels = ["Default"]
         properties = {
             Octopus.Action.Template.Id = "ActionTemplates-261"
-            Octopus.Action.Template.Version = "5"
+            Octopus.Action.Template.Version = "4"
         }
         worker_pool_variable = ""
     }
