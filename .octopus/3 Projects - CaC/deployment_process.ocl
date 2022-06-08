@@ -1,18 +1,3 @@
-step "Manual Intervention Required" {
-
-    action {
-        action_type = "Octopus.Manual"
-        channels = ["Emergency yolo"]
-        properties = {
-            Octopus.Action.Manual.BlockConcurrentDeployments = "True"
-            Octopus.Action.Manual.Instructions = "For Emergency Use Only"
-            Octopus.Action.Manual.ResponsibleTeamIds = "Everyone"
-        }
-        tenant_tags = ["Quote Tenants/NotMotivated", "Quote Tenants/RandomQuoters"]
-        worker_pool_variable = ""
-    }
-}
-
 step "Create Tenant Resource Groups" {
 
     action {
@@ -257,19 +242,5 @@ step "Deploy App with Package - Beta Opt In" {
                 SelectionMode = "immediate"
             }
         }
-    }
-}
-
-step "Email Alert with Auth" {
-
-    action {
-        action_type = "Octopus.Email"
-        channels = ["Emergency yolo"]
-        properties = {
-            Octopus.Action.Email.Body = "Authorized by #{Authorization}"
-            Octopus.Action.Email.Subject = "Emergency deployment on #{Octopus.Release.Channel.Name}"
-            Octopus.Action.Email.To = "garrett@octopus.com"
-        }
-        worker_pool_variable = ""
     }
 }
