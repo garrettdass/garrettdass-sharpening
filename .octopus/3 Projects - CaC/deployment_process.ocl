@@ -283,7 +283,7 @@ step "Run a Script CaC" {
         channels = ["Default"]
         properties = {
             Octopus.Action.RunOnServer = "false"
-            Octopus.Action.Template.Id = "ActionTemplates-1248"
+            Octopus.Action.Template.Id = "ActionTemplates-1249"
             Octopus.Action.Template.Version = "0"
         }
         tenant_tags = ["Quote Tenants/RandomQuoters"]
