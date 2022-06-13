@@ -273,3 +273,20 @@ step "Email Alert with Auth" {
         worker_pool_variable = ""
     }
 }
+
+step "Run a Script CaC" {
+    properties = {
+        Octopus.Action.TargetRoles = "Prod"
+    }
+
+    action {
+        channels = ["Default"]
+        properties = {
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Template.Id = "ActionTemplates-1248"
+            Octopus.Action.Template.Version = "0"
+        }
+        tenant_tags = ["Quote Tenants/RandomQuoters"]
+        worker_pool_variable = ""
+    }
+}
