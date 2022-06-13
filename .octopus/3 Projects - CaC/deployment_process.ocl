@@ -284,7 +284,7 @@ step "Run a Script CaC" {
         properties = {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Template.Id = "ActionTemplates-1249"
-            Octopus.Action.Template.Version = "0"
+            Octopus.Action.Template.Version = "1"
         }
         tenant_tags = ["Quote Tenants/RandomQuoters"]
         worker_pool_variable = ""
