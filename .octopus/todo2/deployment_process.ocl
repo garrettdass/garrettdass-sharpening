@@ -70,7 +70,7 @@ step "Run a Script CaC" {
         properties = {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Template.Id = "ActionTemplates-1249"
-            Octopus.Action.Template.Version = "4"
+            Octopus.Action.Template.Version = "5"
         }
         worker_pool_variable = ""
     }
