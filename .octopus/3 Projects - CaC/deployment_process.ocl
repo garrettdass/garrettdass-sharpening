@@ -281,7 +281,6 @@ step "Run a Script CaC" {
 
     action {
         channels = ["Default"]
-        is_disabled = true
         properties = {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Template.Id = "ActionTemplates-1249"
