@@ -1,0 +1,77 @@
+step "Deploy an Azure Web App (Web Deploy)" {
+    properties = {
+        Octopus.Action.TargetRoles = "Test"
+    }
+
+    action {
+        action_type = "Octopus.AzureWebApp"
+        is_disabled = true
+        properties = {
+            Octopus.Action.Azure.UseChecksum = "False"
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.PackageId = "js-to-do"
+            OctopusUseBundledTooling = "True"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "Octopus Server (built-in)"
+            package_id = "js-to-do"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
+
+step "Run an Azure Script" {
+
+    action {
+        action_type = "Octopus.AzurePowerShell"
+        properties = {
+            Octopus.Action.Azure.AccountId = "Azure Test"
+            Octopus.Action.RunOnServer = "true"
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                cd js-to-do
+                az webapp up --location westus2 --name GarrettsWebApp --html
+                
+            EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool_variable = ""
+
+        container {
+            feed = "Docker"
+            image = "octopusdeploy/worker-tools:3.0.0-windows.ltsc2019"
+        }
+
+        packages "js-to-do" {
+            acquisition_location = "Server"
+            feed = "Octopus Server (built-in)"
+            package_id = "js-to-do"
+            properties = {
+                Extract = "True"
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
+
+step "Run a Script CaC" {
+    properties = {
+        Octopus.Action.TargetRoles = "Prod"
+    }
+
+    action {
+        properties = {
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Template.Id = "ActionTemplates-1249"
+            Octopus.Action.Template.Version = "4"
+        }
+        worker_pool_variable = ""
+    }
+}
