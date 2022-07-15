@@ -11,7 +11,7 @@ step "Run a Script" {
                 version=$(get_octopusvariable "Octopus.Release.Number")
                  configFolderPath=/etc/archlogs
                  configFilePath=$configFolderPath/localconfig.json
-                 #test
+                 #test1
                  sudo pwsh -noprofile -Command "
                  if (\$(Test-Path $configFilePath) -eq \$true) {
                  	try{
