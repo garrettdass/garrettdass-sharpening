@@ -281,6 +281,7 @@ step "email-alert-with-auth" {
 }
 
 step "run-a-script-cac" {
+    condition = "Always"
     name = "Run a Script CaC"
     properties = {
         Octopus.Action.TargetRoles = "Prod"
