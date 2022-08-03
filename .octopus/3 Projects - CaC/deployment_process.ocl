@@ -1,24 +1,26 @@
-step "Manual Intervention Required" {
+step "manual-intervention-required" {
+    name = "Manual Intervention Required"
 
     action {
         action_type = "Octopus.Manual"
-        channels = ["Emergency yolo"]
+        channels = ["emergency-yolo"]
         properties = {
             Octopus.Action.Manual.BlockConcurrentDeployments = "True"
             Octopus.Action.Manual.Instructions = "For Emergency Use Only"
-            Octopus.Action.Manual.ResponsibleTeamIds = "Everyone"
+            Octopus.Action.Manual.ResponsibleTeamIds = "global/everyone"
         }
         tenant_tags = ["Quote Tenants/NotMotivated", "Quote Tenants/RandomQuoters"]
         worker_pool_variable = ""
     }
 }
 
-step "Create Tenant Resource Groups" {
+step "create-tenant-resource-groups" {
+    name = "Create Tenant Resource Groups"
 
     action {
         action_type = "Octopus.AzurePowerShell"
         properties = {
-            Octopus.Action.Azure.AccountId = "Azure Sharpening"
+            Octopus.Action.Azure.AccountId = "azure-sharpening"
             Octopus.Action.RunOnServer = "true"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 $rg = $OctopusParameters["ResourceGroup.Name"]
@@ -43,21 +45,22 @@ step "Create Tenant Resource Groups" {
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
         }
-        worker_pool = "Hosted Ubuntu"
+        worker_pool = "hosted-ubuntu"
 
         container {
-            feed = "Docker"
+            feed = "docker"
             image = "#{ExecutionContainer.Azure}"
         }
     }
 }
 
-step "Configure WebApp target" {
+step "configure-webapp-target" {
+    name = "Configure WebApp target"
 
     action {
         action_type = "Octopus.AzureResourceGroup"
         properties = {
-            Octopus.Action.Azure.AccountId = "Azure Sharpening"
+            Octopus.Action.Azure.AccountId = "azure-sharpening"
             Octopus.Action.Azure.ResourceGroupDeploymentMode = "Incremental"
             Octopus.Action.Azure.ResourceGroupName = "#{ResourceGroup.Name}"
             Octopus.Action.Azure.ResourceGroupTemplate = <<-EOT
@@ -179,16 +182,17 @@ step "Configure WebApp target" {
             Octopus.Action.RunOnServer = "true"
             OctopusUseBundledTooling = "False"
         }
-        worker_pool = "Hosted Ubuntu"
+        worker_pool = "hosted-ubuntu"
 
         container {
-            feed = "Docker"
+            feed = "docker"
             image = "#{ExecutionContainer.Azure}"
         }
     }
 }
 
-step "Deploy App with Package" {
+step "deploy-app-with-package" {
+    name = "Deploy App with Package"
     properties = {
         Octopus.Action.TargetRoles = "GD-AppService"
     }
@@ -199,22 +203,22 @@ step "Deploy App with Package" {
             Octopus.Action.Azure.DeploymentType = "Package"
             Octopus.Action.EnabledFeatures = "Octopus.Features.JsonConfigurationVariables,Octopus.Features.ConfigurationTransforms,Octopus.Features.SubstituteInFiles"
             Octopus.Action.Package.DownloadOnTentacle = "False"
-            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.JsonConfigurationVariablesTargets = "appsettings.json"
             Octopus.Action.Package.PackageId = "#{PackageByTag}"
             Octopus.Action.RunOnServer = "true"
             OctopusUseBundledTooling = "False"
         }
-        worker_pool = "Hosted Ubuntu"
+        worker_pool = "hosted-ubuntu"
 
         container {
-            feed = "Docker"
+            feed = "docker"
             image = "#{ExecutionContainer.Azure}"
         }
 
         packages {
             acquisition_location = "Server"
-            feed = "Octopus Server (built-in)"
+            feed = "octopus-server-built-in"
             package_id = "#{PackageByTag}"
             properties = {
                 SelectionMode = "immediate"
@@ -223,35 +227,36 @@ step "Deploy App with Package" {
     }
 }
 
-step "Deploy App with Package - Beta Opt In" {
+step "deploy-app-with-package-beta-opt-in" {
+    name = "Deploy App with Package - Beta Opt In"
     properties = {
         Octopus.Action.TargetRoles = "GD-AppService"
     }
 
     action {
         action_type = "Octopus.AzureAppService"
-        channels = ["Beta", "Default"]
+        channels = ["beta", "default"]
         properties = {
             Octopus.Action.Azure.DeploymentType = "Package"
             Octopus.Action.EnabledFeatures = "Octopus.Features.JsonConfigurationVariables,Octopus.Features.ConfigurationTransforms,Octopus.Features.SubstituteInFiles"
             Octopus.Action.Package.DownloadOnTentacle = "False"
-            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.JsonConfigurationVariablesTargets = "appsettings.json"
             Octopus.Action.Package.PackageId = "RandomQuotes"
             Octopus.Action.RunOnServer = "true"
             OctopusUseBundledTooling = "False"
         }
         tenant_tags = ["Quote Tenants/BetaQuotes"]
-        worker_pool = "Hosted Ubuntu"
+        worker_pool = "hosted-ubuntu"
 
         container {
-            feed = "Docker"
+            feed = "docker"
             image = "#{ExecutionContainer.Azure}"
         }
 
         packages {
             acquisition_location = "Server"
-            feed = "Octopus Server (built-in)"
+            feed = "octopus-server-built-in"
             package_id = "RandomQuotes"
             properties = {
                 SelectionMode = "immediate"
@@ -260,11 +265,12 @@ step "Deploy App with Package - Beta Opt In" {
     }
 }
 
-step "Email Alert with Auth" {
+step "email-alert-with-auth" {
+    name = "Email Alert with Auth"
 
     action {
         action_type = "Octopus.Email"
-        channels = ["Emergency yolo"]
+        channels = ["emergency-yolo"]
         properties = {
             Octopus.Action.Email.Body = "Authorized by #{Authorization}"
             Octopus.Action.Email.Subject = "Emergency deployment on #{Octopus.Release.Channel.Name}"
@@ -274,13 +280,14 @@ step "Email Alert with Auth" {
     }
 }
 
-step "Run a Script CaC" {
+step "run-a-script-cac" {
+    name = "Run a Script CaC"
     properties = {
         Octopus.Action.TargetRoles = "Prod"
     }
 
     action {
-        channels = ["Default"]
+        channels = ["default"]
         properties = {
             Octopus.Action.RunOnServer = "false"
             Octopus.Action.Template.Id = "ActionTemplates-1249"
