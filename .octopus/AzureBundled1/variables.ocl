@@ -1,0 +1,3 @@
+variable "TestSensi" {
+    value "Test" {}
+}
