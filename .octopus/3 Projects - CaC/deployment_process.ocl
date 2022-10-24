@@ -1,10 +1,10 @@
-step "Create Tenant Resource Groups" {
+step "create-tenant-resource-groups" {
+    name = "Create Tenant Resource Groups"
 
     action {
         action_type = "Octopus.AzurePowerShell"
         properties = {
-            Octopus.Action.Azure.AccountId = "Azure Sharpening"
-            Octopus.Action.RunOnServer = "true"
+            Octopus.Action.Azure.AccountId = "azure-sharpening"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 $rg = $OctopusParameters["ResourceGroup.Name"]
                 $location = $OctopusParameters["ResourceGroup.Location"]
@@ -28,21 +28,22 @@ step "Create Tenant Resource Groups" {
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
         }
-        worker_pool = "Hosted Ubuntu"
+        worker_pool = "hosted-ubuntu"
 
         container {
-            feed = "Docker"
+            feed = "docker"
             image = "#{ExecutionContainer.Azure}"
         }
     }
 }
 
-step "Configure WebApp target" {
+step "configure-webapp-target" {
+    name = "Configure WebApp target"
 
     action {
         action_type = "Octopus.AzureResourceGroup"
         properties = {
-            Octopus.Action.Azure.AccountId = "Azure Sharpening"
+            Octopus.Action.Azure.AccountId = "azure-sharpening"
             Octopus.Action.Azure.ResourceGroupDeploymentMode = "Incremental"
             Octopus.Action.Azure.ResourceGroupName = "#{ResourceGroup.Name}"
             Octopus.Action.Azure.ResourceGroupTemplate = <<-EOT
@@ -161,19 +162,19 @@ step "Configure WebApp target" {
             EOT
             Octopus.Action.Azure.ResourceGroupTemplateParameters = "{\"webAppName\":{\"value\":\"#{WebApp.Name}\"},\"location\":{\"value\":\"#{ResourceGroup.Location}\"},\"sku\":{\"value\":\"#{Offering.Tier.Name}\"},\"skuCode\":{\"value\":\"#{Offering.Tier.SKU}\"},\"linuxFxVersion\":{\"value\":\"DOTNETCORE|3.1\"},\"repoUrl\":{\"value\":\" \"},\"webAppRole\":{\"value\":\"QuotesAppService\"}}"
             Octopus.Action.Azure.TemplateSource = "Inline"
-            Octopus.Action.RunOnServer = "true"
             OctopusUseBundledTooling = "False"
         }
-        worker_pool = "Hosted Ubuntu"
+        worker_pool = "hosted-ubuntu"
 
         container {
-            feed = "Docker"
+            feed = "docker"
             image = "#{ExecutionContainer.Azure}"
         }
     }
 }
 
-step "Deploy App with Package" {
+step "deploy-app-with-package" {
+    name = "Deploy App with Package"
     properties = {
         Octopus.Action.TargetRoles = "GD-AppService"
     }
@@ -184,22 +185,21 @@ step "Deploy App with Package" {
             Octopus.Action.Azure.DeploymentType = "Package"
             Octopus.Action.EnabledFeatures = "Octopus.Features.JsonConfigurationVariables,Octopus.Features.ConfigurationTransforms,Octopus.Features.SubstituteInFiles"
             Octopus.Action.Package.DownloadOnTentacle = "False"
-            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.JsonConfigurationVariablesTargets = "appsettings.json"
             Octopus.Action.Package.PackageId = "#{PackageByTag}"
-            Octopus.Action.RunOnServer = "true"
             OctopusUseBundledTooling = "False"
         }
-        worker_pool = "Hosted Ubuntu"
+        worker_pool = "hosted-ubuntu"
 
         container {
-            feed = "Docker"
+            feed = "docker"
             image = "#{ExecutionContainer.Azure}"
         }
 
         packages {
             acquisition_location = "Server"
-            feed = "Octopus Server (built-in)"
+            feed = "octopus-server-built-in"
             package_id = "#{PackageByTag}"
             properties = {
                 SelectionMode = "immediate"
@@ -208,35 +208,35 @@ step "Deploy App with Package" {
     }
 }
 
-step "Deploy App with Package - Beta Opt In" {
+step "deploy-app-with-package-beta-opt-in" {
+    name = "Deploy App with Package - Beta Opt In"
     properties = {
         Octopus.Action.TargetRoles = "GD-AppService"
     }
 
     action {
         action_type = "Octopus.AzureAppService"
-        channels = ["Beta", "Default"]
+        channels = ["beta", "default"]
         properties = {
             Octopus.Action.Azure.DeploymentType = "Package"
             Octopus.Action.EnabledFeatures = "Octopus.Features.JsonConfigurationVariables,Octopus.Features.ConfigurationTransforms,Octopus.Features.SubstituteInFiles"
             Octopus.Action.Package.DownloadOnTentacle = "False"
-            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.JsonConfigurationVariablesTargets = "appsettings.json"
             Octopus.Action.Package.PackageId = "RandomQuotes"
-            Octopus.Action.RunOnServer = "true"
             OctopusUseBundledTooling = "False"
         }
         tenant_tags = ["Quote Tenants/BetaQuotes"]
-        worker_pool = "Hosted Ubuntu"
+        worker_pool = "hosted-ubuntu"
 
         container {
-            feed = "Docker"
+            feed = "docker"
             image = "#{ExecutionContainer.Azure}"
         }
 
         packages {
             acquisition_location = "Server"
-            feed = "Octopus Server (built-in)"
+            feed = "octopus-server-built-in"
             package_id = "RandomQuotes"
             properties = {
                 SelectionMode = "immediate"
