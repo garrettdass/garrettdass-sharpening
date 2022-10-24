@@ -31,3 +31,33 @@ variable "PackageByTag" {
         tenant_tag = ["Quote Tenants/RandomQuoters"]
     }
 }
+
+variable "TestCert" {
+    type = "Certificate"
+
+    value "Certificates-721" {}
+}
+
+variable "TestAWSAcc" {
+    type = "AmazonWebServicesAccount"
+
+    value "aws-account" {}
+}
+
+variable "TestGCPAcc" {
+    type = "GoogleCloudAccount"
+
+    value "gcp-account" {}
+}
+
+variable "TestAzureAcc" {
+    type = "AzureAccount"
+
+    value "azure-sharpening" {}
+}
+
+variable "TestPool" {
+    type = "WorkerPool"
+
+    value "test-pool" {}
+}
