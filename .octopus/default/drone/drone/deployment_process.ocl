@@ -187,17 +187,6 @@ step "Config compare - templatexxx_general_xyz123" {
         }
     }
 
-    action "File System- Backup Properties file - afterchange" {
-        environments = ["SPINUP"]
-        is_disabled = true
-        type5 = {
-            destinationPath = "\\\\#{generaltype2}\\c$\\backup\\afterchange\\"
-            Octopus.Action.Template.Id = "ActionTemplates-
-            Octopus.Action.Template.Version = "4"
-            sourcePath = "\\\\#{generaltype2_type4}\\C$\\template2.type5"
-        }
-    }
-
     action "Compare files - type5" {
         environments = ["SPINUP"]
         is_disabled = true
