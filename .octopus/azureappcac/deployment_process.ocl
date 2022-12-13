@@ -1,10 +1,11 @@
-step "Create test web service" {
+step "create-test-web-service" {
+    name = "Create test web service"
 
     action {
         action_type = "Octopus.AzurePowerShell"
         is_disabled = true
         properties = {
-            Octopus.Action.Azure.AccountId = "Azure Support Sandbox"
+            Octopus.Action.Azure.AccountId = "azure-support-sandbox"
             Octopus.Action.RunOnServer = "true"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 # Octopus variables
@@ -39,7 +40,8 @@ step "Create test web service" {
     }
 }
 
-step "Deploy an Azure App Service" {
+step "deploy-an-azure-app-service" {
+    name = "Deploy an Azure App Service"
     properties = {
         Octopus.Action.TargetRoles = "azure-web-app"
     }
@@ -50,7 +52,7 @@ step "Deploy an Azure App Service" {
             Octopus.Action.Azure.DeploymentType = "Package"
             Octopus.Action.EnabledFeatures = "Octopus.Features.JsonConfigurationVariables,Octopus.Features.ConfigurationTransforms,Octopus.Features.SubstituteInFiles"
             Octopus.Action.Package.DownloadOnTentacle = "False"
-            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.PackageId = "js-to-do"
             Octopus.Action.RunOnServer = "true"
             OctopusUseBundledTooling = "False"
@@ -58,7 +60,7 @@ step "Deploy an Azure App Service" {
 
         packages {
             acquisition_location = "Server"
-            feed = "Octopus Server (built-in)"
+            feed = "octopus-server-built-in"
             package_id = "js-to-do"
             properties = {
                 SelectionMode = "immediate"
@@ -67,7 +69,8 @@ step "Deploy an Azure App Service" {
     }
 }
 
-step "Run a Script" {
+step "run-a-script" {
+    name = "Run a Script"
 
     action {
         action_type = "Octopus.Script"
@@ -80,13 +83,15 @@ step "Run a Script" {
     }
 }
 
-step "Tear down test web service" {
+step "tear-down-test-web-service" {
+    name = "Tear down test web service"
 
     action {
         action_type = "Octopus.AzurePowerShell"
         is_disabled = true
         properties = {
-            Octopus.Action.Azure.AccountId = "Azure Support Sandbox"
+            Octopus.Action.Azure.AccountId = "azure-support-sandbox"
+            Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 # Octopus variables
                 $environment = $OctopusParameters['Octopus.Environment.Name'].Replace(" ","").ToLower()
@@ -112,7 +117,8 @@ step "Tear down test web service" {
     }
 }
 
-step "Run a Script but better" {
+step "run-a-script-but-better" {
+    name = "Run a Script but better"
 
     action {
         action_type = "Octopus.Script"
