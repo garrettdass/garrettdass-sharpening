@@ -128,6 +128,7 @@ step "tear-down-test-web-service" {
 
     action {
         action_type = "Octopus.AzurePowerShell"
+        is_disabled = true
         properties = {
             Octopus.Action.Azure.AccountId = "azure-support-sandbox"
             Octopus.Action.Script.ScriptBody = <<-EOT
