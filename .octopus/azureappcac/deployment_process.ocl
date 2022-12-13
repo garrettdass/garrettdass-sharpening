@@ -3,10 +3,8 @@ step "create-test-web-service" {
 
     action {
         action_type = "Octopus.AzurePowerShell"
-        is_disabled = true
         properties = {
             Octopus.Action.Azure.AccountId = "azure-support-sandbox"
-            Octopus.Action.RunOnServer = "true"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 # Octopus variables
                 $environment = $OctopusParameters['Octopus.Environment.Name'].Replace(" ","").ToLower()
@@ -35,7 +33,13 @@ step "create-test-web-service" {
             EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
-            OctopusUseBundledTooling = "True"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "hosted-ubuntu"
+
+        container {
+            feed = "docker-hub"
+            image = "octopuslabs/azure-workertools"
         }
     }
 }
@@ -54,8 +58,13 @@ step "deploy-an-azure-app-service" {
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.PackageId = "js-to-do"
-            Octopus.Action.RunOnServer = "true"
             OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "hosted-ubuntu"
+
+        container {
+            feed = "docker-hub"
+            image = "octopuslabs/azure-workertools"
         }
 
         packages {
@@ -74,11 +83,18 @@ step "run-a-script" {
 
     action {
         action_type = "Octopus.Script"
+        is_disabled = true
         properties = {
-            Octopus.Action.RunOnServer = "true"
             Octopus.Action.Script.ScriptBody = "Write-Host \"Hello world\""
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "hosted-ubuntu"
+
+        container {
+            feed = "docker-hub"
+            image = "octopuslabs/azure-workertools"
         }
     }
 }
@@ -88,10 +104,8 @@ step "tear-down-test-web-service" {
 
     action {
         action_type = "Octopus.AzurePowerShell"
-        is_disabled = true
         properties = {
             Octopus.Action.Azure.AccountId = "azure-support-sandbox"
-            Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 # Octopus variables
                 $environment = $OctopusParameters['Octopus.Environment.Name'].Replace(" ","").ToLower()
@@ -112,7 +126,13 @@ step "tear-down-test-web-service" {
             EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
-            OctopusUseBundledTooling = "True"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "hosted-ubuntu"
+
+        container {
+            feed = "docker-hub"
+            image = "octopuslabs/azure-workertools"
         }
     }
 }
@@ -122,6 +142,7 @@ step "run-a-script-but-better" {
 
     action {
         action_type = "Octopus.Script"
+        is_disabled = true
         properties = {
             Octopus.Action.RunOnServer = "true"
             Octopus.Action.Script.ScriptBody = "Write-Host \"Does this try to log in as well?\""
