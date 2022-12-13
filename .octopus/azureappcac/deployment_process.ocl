@@ -154,3 +154,24 @@ step "run-a-script-but-better" {
         }
     }
 }
+
+step "run-an-azure-script" {
+    name = "Run an Azure Script"
+
+    action {
+        action_type = "Octopus.AzurePowerShell"
+        properties = {
+            Octopus.Action.Azure.AccountId = "azure-support-sandbox"
+            Octopus.Action.Script.ScriptBody = "az logout"
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "hosted-ubuntu"
+
+        container {
+            feed = "docker-hub"
+            image = "octopuslabs/azure-workertools"
+        }
+    }
+}
