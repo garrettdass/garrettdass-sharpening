@@ -3,6 +3,7 @@ step "run-an-azure-script" {
 
     action {
         action_type = "Octopus.AzurePowerShell"
+        is_disabled = true
         properties = {
             Octopus.Action.Azure.AccountId = "azure-support-sandbox"
             Octopus.Action.Script.ScriptBody = "az logout"
@@ -24,6 +25,7 @@ step "create-test-web-service" {
 
     action {
         action_type = "Octopus.AzurePowerShell"
+        is_disabled = true
         properties = {
             Octopus.Action.Azure.AccountId = "azure-support-sandbox"
             Octopus.Action.Script.ScriptBody = <<-EOT
@@ -76,6 +78,7 @@ step "deploy-an-azure-app-service" {
 
     action {
         action_type = "Octopus.AzureAppService"
+        is_disabled = true
         properties = {
             Octopus.Action.Azure.DeploymentType = "Package"
             Octopus.Action.EnabledFeatures = "Octopus.Features.JsonConfigurationVariables,Octopus.Features.ConfigurationTransforms,Octopus.Features.SubstituteInFiles"
@@ -128,7 +131,6 @@ step "tear-down-test-web-service" {
 
     action {
         action_type = "Octopus.AzurePowerShell"
-        is_disabled = true
         properties = {
             Octopus.Action.Azure.AccountId = "azure-support-sandbox"
             Octopus.Action.Script.ScriptBody = <<-EOT
@@ -136,7 +138,7 @@ step "tear-down-test-web-service" {
                 $environment = $OctopusParameters['Octopus.Environment.Name'].Replace(" ","").ToLower()
                 $releaseNumber = $OctopusParameters['Octopus.Release.Number'].Replace(".", "-")
                 $deploymentId = $OctopusParameters['Octopus.Deployment.Id'].ToLower()
-                $uniqueName = "$userPrefix-$environment-$releaseNumber-$deploymentId"
+                #$uniqueName = "$userPrefix-$environment-$releaseNumber-$deploymentId"
                 
                 # Notify user of the deployed URL
                 Write-Warning "Your web app should be hosted at: https://$uniqueName.azurewebsites.net"
@@ -146,7 +148,8 @@ step "tear-down-test-web-service" {
                 Start-Sleep -s $websiteLiveTime
                 
                 # Tear down test web serivce (delete resource group)
-                Remove-AzureRmResourceGroup -Name $uniqueName -Force
+                #Remove-AzureRmResourceGroup -Name $uniqueName -Force
+                az group delete --name $uniqueName --yes
                 Remove-OctopusTarget -targetIdOrName $uniqueName
             EOT
             Octopus.Action.Script.ScriptSource = "Inline"
