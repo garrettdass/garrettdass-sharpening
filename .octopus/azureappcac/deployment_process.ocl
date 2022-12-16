@@ -14,7 +14,7 @@ step "run-an-azure-script" {
 
         container {
             feed = "docker-hub"
-            image = "octopuslabs/azure-workertools"
+            image = "octopusdeploy/worker-tools:3-ubuntu.18.04"
         }
     }
 }
@@ -63,7 +63,7 @@ step "create-test-web-service" {
 
         container {
             feed = "docker-hub"
-            image = "octopuslabs/azure-workertools"
+            image = "octopusdeploy/worker-tools:3-ubuntu.18.04"
         }
     }
 }
@@ -88,7 +88,7 @@ step "deploy-an-azure-app-service" {
 
         container {
             feed = "docker-hub"
-            image = "octopuslabs/azure-workertools"
+            image = "octopusdeploy/worker-tools:3-ubuntu.18.04"
         }
 
         packages {
