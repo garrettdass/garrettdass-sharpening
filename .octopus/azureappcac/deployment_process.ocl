@@ -28,9 +28,9 @@ step "create-test-web-service" {
             Octopus.Action.Azure.AccountId = "azure-support-sandbox"
             Octopus.Action.Script.ScriptBody = <<-EOT
                 # Octopus variables
-                $environment = $OctopusParameters['Octopus.Environment.Name'].Replace(" ","").ToLower()
-                $releaseNumber = $OctopusParameters['Octopus.Release.Number'].Replace(".", "-")
-                $deploymentId = $OctopusParameters['Octopus.Deployment.Id'].ToLower()
+                #$environment = $OctopusParameters['Octopus.Environment.Name'].Replace(" ","").ToLower()
+                #$releaseNumber = $OctopusParameters['Octopus.Release.Number'].Replace(".", "-")
+                #$deploymentId = $OctopusParameters['Octopus.Deployment.Id'].ToLower()
                 
                 # A unique name based on the Octopus environment, release, and deployment
                 #$uniqueName = "$userPrefix-$environment-$releaseNumber-$deploymentId"
@@ -45,7 +45,7 @@ step "create-test-web-service" {
                 
                 #Create an app service plan in Free Tier
                 #New-AzureRmAppServicePlan -Name $uniqueName -Location $rgLocation -ResourceGroupName $uniqueName -Tier Free
-                az appservice plan create --name $uniqueName --group --$uniqueName --location $rgRegion --sku FREE
+                az appservice plan create --name $uniqueName --resource-group --$uniqueName --location $rgRegion --sku FREE
                 
                 #Create a web app
                 #New-AzureRmWebApp -Name $uniqueName -Location $rgLocation -AppServicePlan $uniqueName -ResourceGroupName $uniqueName
