@@ -49,7 +49,7 @@ step "create-test-web-service" {
                 
                 #Create a web app
                 #New-AzureRmWebApp -Name $uniqueName -Location $rgLocation -AppServicePlan $uniqueName -ResourceGroupName $uniqueName
-                az webapp create --name $uniquename --group $uniqueName --location $rgRegion --plan $uniqueName
+                az webapp create --name $uniquename --resource-group $uniqueName --location $rgRegion --plan $uniqueName
                 
                 # Create new target in Octopus
                 New-OctopusAzureWebAppTarget -Name $uniqueName -AzureWebApp $uniqueName -AzureResourceGroupName $uniqueName -OctopusRoles $octoRole -OctopusDefaultWorkerPoolIdOrName $octoWorkerPool
