@@ -45,7 +45,7 @@ step "create-test-web-service" {
                 
                 #Create an app service plan in Free Tier
                 #New-AzureRmAppServicePlan -Name $uniqueName -Location $rgLocation -ResourceGroupName $uniqueName -Tier Free
-                az appservice plan create --name $uniqueName --resource-group --$uniqueName --location $rgRegion --sku FREE
+                az appservice plan create --name $uniqueName --resource-group $uniqueName --location $rgRegion --sku FREE
                 
                 #Create a web app
                 #New-AzureRmWebApp -Name $uniqueName -Location $rgLocation -AppServicePlan $uniqueName -ResourceGroupName $uniqueName
