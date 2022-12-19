@@ -68,6 +68,23 @@ step "create-test-web-service" {
     }
 }
 
+step "health-check" {
+    name = "Health Check"
+    properties = {
+        Octopus.Action.TargetRoles = "azure-web-app"
+    }
+
+    action {
+        action_type = "Octopus.HealthCheck"
+        properties = {
+            Octopus.Action.HealthCheck.ErrorHandling = "TreatExceptionsAsErrors"
+            Octopus.Action.HealthCheck.IncludeMachinesInDeployment = "DoNotAlterMachines"
+            Octopus.Action.HealthCheck.Type = "ConnectionTest"
+        }
+        worker_pool_variable = ""
+    }
+}
+
 step "deploy-an-azure-app-service" {
     name = "Deploy an Azure App Service"
     properties = {
