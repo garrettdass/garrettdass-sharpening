@@ -1,25 +1,3 @@
-step "run-an-azure-script" {
-    name = "Run an Azure Script"
-
-    action {
-        action_type = "Octopus.AzurePowerShell"
-        is_disabled = true
-        properties = {
-            Octopus.Action.Azure.AccountId = "azure-support-sandbox"
-            Octopus.Action.Script.ScriptBody = "az logout"
-            Octopus.Action.Script.ScriptSource = "Inline"
-            Octopus.Action.Script.Syntax = "PowerShell"
-            OctopusUseBundledTooling = "False"
-        }
-        worker_pool = "hosted-ubuntu"
-
-        container {
-            feed = "docker-hub"
-            image = "octopusdeploy/worker-tools:3-ubuntu.18.04"
-        }
-    }
-}
-
 step "create-test-web-service" {
     name = "Create test web service"
 
@@ -77,6 +55,7 @@ step "health-check" {
 
     action {
         action_type = "Octopus.HealthCheck"
+        is_disabled = true
         properties = {
             Octopus.Action.HealthCheck.ErrorHandling = "TreatExceptionsAsErrors"
             Octopus.Action.HealthCheck.IncludeMachinesInDeployment = "DoNotAlterMachines"
@@ -121,27 +100,6 @@ step "deploy-an-azure-app-service" {
     }
 }
 
-step "run-a-script" {
-    name = "Run a Script"
-
-    action {
-        action_type = "Octopus.Script"
-        is_disabled = true
-        properties = {
-            Octopus.Action.Script.ScriptBody = "Write-Host \"Hello world\""
-            Octopus.Action.Script.ScriptSource = "Inline"
-            Octopus.Action.Script.Syntax = "PowerShell"
-            OctopusUseBundledTooling = "False"
-        }
-        worker_pool = "hosted-ubuntu"
-
-        container {
-            feed = "docker-hub"
-            image = "octopuslabs/azure-workertools"
-        }
-    }
-}
-
 step "tear-down-test-web-service" {
     name = "Tear down test web service"
 
@@ -177,21 +135,6 @@ step "tear-down-test-web-service" {
         container {
             feed = "docker-hub"
             image = "octopusdeploy/worker-tools:3-ubuntu.18.04"
-        }
-    }
-}
-
-step "run-a-script-but-better" {
-    name = "Run a Script but better"
-
-    action {
-        action_type = "Octopus.Script"
-        is_disabled = true
-        properties = {
-            Octopus.Action.RunOnServer = "true"
-            Octopus.Action.Script.ScriptBody = "Write-Host \"Does this try to log in as well?\""
-            Octopus.Action.Script.ScriptSource = "Inline"
-            Octopus.Action.Script.Syntax = "PowerShell"
         }
     }
 }
