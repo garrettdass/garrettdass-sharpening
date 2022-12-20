@@ -55,7 +55,6 @@ step "health-check" {
 
     action {
         action_type = "Octopus.HealthCheck"
-        is_disabled = true
         properties = {
             Octopus.Action.HealthCheck.ErrorHandling = "TreatExceptionsAsErrors"
             Octopus.Action.HealthCheck.IncludeMachinesInDeployment = "DoNotAlterMachines"
@@ -105,6 +104,7 @@ step "tear-down-test-web-service" {
 
     action {
         action_type = "Octopus.AzurePowerShell"
+        is_disabled = true
         properties = {
             Octopus.Action.Azure.AccountId = "azure-support-sandbox"
             Octopus.Action.Script.ScriptBody = <<-EOT
