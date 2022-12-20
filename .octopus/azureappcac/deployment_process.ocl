@@ -25,7 +25,6 @@ step "create-test-web-service" {
 
     action {
         action_type = "Octopus.AzurePowerShell"
-        is_disabled = true
         properties = {
             Octopus.Action.Azure.AccountId = "azure-support-sandbox"
             Octopus.Action.Script.ScriptBody = <<-EOT
@@ -78,7 +77,6 @@ step "health-check" {
 
     action {
         action_type = "Octopus.HealthCheck"
-        is_disabled = true
         properties = {
             Octopus.Action.HealthCheck.ErrorHandling = "TreatExceptionsAsErrors"
             Octopus.Action.HealthCheck.IncludeMachinesInDeployment = "DoNotAlterMachines"
@@ -97,7 +95,6 @@ step "deploy-an-azure-app-service" {
 
     action {
         action_type = "Octopus.AzureAppService"
-        is_disabled = true
         properties = {
             Octopus.Action.Azure.DeploymentType = "Package"
             Octopus.Action.EnabledFeatures = "Octopus.Features.JsonConfigurationVariables,Octopus.Features.ConfigurationTransforms,Octopus.Features.SubstituteInFiles"
