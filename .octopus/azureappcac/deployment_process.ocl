@@ -42,7 +42,7 @@ step "create-test-web-service" {
 
         container {
             feed = "docker-hub"
-            image = "octopusdeploy/worker-tools:3-ubuntu.18.04"
+            image = "octopusdeploy/worker-tools:4.0.0-windows.ltsc2019"
         }
     }
 }
@@ -85,7 +85,7 @@ step "deploy-an-azure-app-service" {
 
         container {
             feed = "docker-hub"
-            image = "octopusdeploy/worker-tools:3-ubuntu.18.04"
+            image = "octopusdeploy/worker-tools:4.0.0-windows.ltsc2019"
         }
 
         packages {
