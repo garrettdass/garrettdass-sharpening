@@ -38,7 +38,7 @@ step "create-test-web-service" {
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
         }
-        worker_pool = "hosted-ubuntu"
+        worker_pool_variable = "octoWorkerPool"
 
         container {
             feed = "docker-hub"
@@ -81,7 +81,7 @@ step "deploy-an-azure-app-service" {
             Octopus.Action.Package.PackageId = "js-to-do"
             OctopusUseBundledTooling = "False"
         }
-        worker_pool = "hosted-ubuntu"
+        worker_pool_variable = "octoWorkerPool"
 
         container {
             feed = "docker-hub"
