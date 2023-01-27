@@ -1,14 +1,9 @@
 release_notes_template = <<-EOT
-        #{each build in Octopus.Release.Builds}
-        * #{build.Packages}
-        * #{build.BuildUrl}
-        * #{build.Branch}
-        * #{build.BuildEnvironment}
-        * #{build.BuildNumber}
-        * #{build.VcsRoot}
-        * #{build.VcsType}
-        * #{build.VcsCommitNumber}
-        * #{build.VcsCommitUrl}
+        #{each package in Octopus.Release.Package}
+        - #{package.PackageId} #{package.Version}
+        #{each commit in package.Commits}
+            - [#{commit.CommitId}](#{commit.LinkUrl}) - #{commit.Comment}
+        #{/each}
         #{/each}
     EOT
 
