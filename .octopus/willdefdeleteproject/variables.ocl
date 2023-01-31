@@ -1,4 +1,4 @@
-variable "workerpool" {
+variable "New Worker Pool" {
     type = "WorkerPool"
 
     value "new-worker-pool" {}
