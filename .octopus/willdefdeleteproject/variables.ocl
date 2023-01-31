@@ -1,3 +1,5 @@
 variable "workerpool" {
-    value "ThisIsNotaWorkerPool" {}
+    type = "WorkerPool"
+
+    value "new-worker-pool" {}
 }
