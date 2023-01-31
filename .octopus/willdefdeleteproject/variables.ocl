@@ -1,0 +1,3 @@
+variable "workerpool" {
+    value "ThisIsNotaWorkerPool" {}
+}
