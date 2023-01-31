@@ -49,6 +49,6 @@ step "deploy-a-package" {
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
-        worker_pool = "new-worker-pool"
+        worker_pool_variable = "workerpool"
     }
 }
