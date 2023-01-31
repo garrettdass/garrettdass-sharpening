@@ -17,8 +17,9 @@ step "deploy-a-package" {
         Octopus.Action.TargetRoles = "Dev"
     }
 
-    action {
+    action "deploy-a-package" {
         action_type = "Octopus.TentaclePackage"
+        name = "Deploy a Package"
         properties = {
             Octopus.Action.EnabledFeatures = ",Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
             Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
@@ -38,5 +39,16 @@ step "deploy-a-package" {
                 SelectionMode = "immediate"
             }
         }
+    }
+
+    action "run-a-script" {
+        action_type = "Octopus.Script"
+        name = "Run a Script"
+        properties = {
+            Octopus.Action.Script.ScriptBody = "write-host test"
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool = "new-worker-pool"
     }
 }
