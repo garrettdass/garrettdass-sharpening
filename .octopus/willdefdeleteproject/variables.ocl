@@ -1,5 +1,8 @@
 variable "New Worker Pool" {
     type = "WorkerPool"
 
-    value "default-worker-pool" {}
+    value "default-worker-pool" {
+        action = ["deploy-a-package"]
+        environment = ["development"]
+    }
 }
