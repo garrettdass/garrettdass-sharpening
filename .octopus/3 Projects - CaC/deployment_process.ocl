@@ -42,7 +42,7 @@ step "create-tenant-resource-groups" {
                 	Write-Host "Creating Resource Group with name '$rg' in '$location'"
                 	az group create --name $rg --location $location --tags "Octopus.Project.Name=$OCTOPUS_PROJECT_NAME" "Octopus.Space.Name=$OCTOPUS_SPACE_NAME" "Octopus.Environment.Name=$OCTOPUS_ENVIRONMENT_NAME" "Octopus.Project.Id=$OCTOPUS_PROJECT_ID" "Octopus.Environment.Id=$OCTOPUS_ENVIRONMENT_ID" "Octopus.Space.Id=$OCTOPUS_SPACE_ID" "Octopus.Url=$OCTOPUS_URL"
                 }
-            EOT
+                EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
@@ -179,7 +179,7 @@ step "configure-webapp-target" {
                     }
                   ]
                 }
-            EOT
+                EOT
             Octopus.Action.Azure.ResourceGroupTemplateParameters = "{\"webAppName\":{\"value\":\"#{WebApp.Name}\"},\"location\":{\"value\":\"#{ResourceGroup.Location}\"},\"sku\":{\"value\":\"#{Offering.Tier.Name}\"},\"skuCode\":{\"value\":\"#{Offering.Tier.SKU}\"},\"linuxFxVersion\":{\"value\":\"DOTNETCORE|3.1\"},\"repoUrl\":{\"value\":\" \"},\"webAppRole\":{\"value\":\"QuotesAppService\"}}"
             Octopus.Action.Azure.TemplateSource = "Inline"
             OctopusUseBundledTooling = "False"
