@@ -12,7 +12,6 @@ step "manual-intervention-required" {
             Octopus.Action.RunOnServer = "false"
         }
         tenant_tags = ["Quote Tenants/NotMotivated", "Quote Tenants/RandomQuoters"]
-        worker_pool_variable = ""
     }
 }
 
@@ -277,7 +276,6 @@ step "email-alert-with-auth" {
             Octopus.Action.Email.To = "garrett@octopus.com"
             Octopus.Action.RunOnServer = "false"
         }
-        worker_pool_variable = ""
     }
 }
 
@@ -296,6 +294,30 @@ step "run-a-script-cac" {
             Octopus.Action.Template.Version = "2"
         }
         tenant_tags = ["Quote Tenants/RandomQuoters"]
+        worker_pool_variable = ""
+    }
+}
+
+step "create-tenant" {
+    name = "Create Tenant"
+    properties = {
+        Octopus.Action.TargetRoles = "Dev"
+    }
+
+    action {
+        channels = ["beta"]
+        properties = {
+            CloneTenantStep_OctopusUrl = "#{if Octopus.Web.ServerUri}#{Octopus.Web.ServerUri}#{else}#{Octopus.Web.BaseUrl}#{/if}"
+            CloneTenantStep_SpaceId = "Spaces-222"
+            CreateTenantStep_ApiKey = "#{AppSettings:AppVersion}"
+            CreateTenantStep_ProjectEnvironments = "test"
+            CreateTenantStep_TenantName = "Test"
+            CreateTenantStep_TenantTags = "Test"
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Template.Id = "ActionTemplates-2281"
+            Octopus.Action.Template.Version = "4"
+        }
+        tenant_tags = ["TenantTag1/Tag1"]
         worker_pool_variable = ""
     }
 }
