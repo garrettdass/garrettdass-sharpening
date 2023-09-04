@@ -1,4 +1,5 @@
-step "Deploy to IIS" {
+step "deploy-to-iis" {
+    name = "Deploy to IIS"
     properties = {
         Octopus.Action.TargetRoles = "Dev"
     }
@@ -26,19 +27,20 @@ step "Deploy to IIS" {
             Octopus.Action.Package.CustomInstallationDirectory = "C:\\custominstalldir\\"
             Octopus.Action.Package.CustomInstallationDirectoryShouldBePurgedBeforeDeployment = "True"
             Octopus.Action.Package.DownloadOnTentacle = "False"
-            Octopus.Action.Package.FeedId = "Octopus Server (built-in)"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.PackageId = "OnBoard.App.OnboardingApp"
+            Octopus.Action.RunOnServer = "false"
             Octopus.Action.SubstituteInFiles.OutputEncoding = "utf-8"
             Octopus.Action.SubstituteInFiles.TargetFiles = <<-EOT
                 **\Web.Development.config
                 
-            EOT
+                EOT
         }
         worker_pool_variable = ""
 
         packages {
             acquisition_location = "Server"
-            feed = "Octopus Server (built-in)"
+            feed = "octopus-server-built-in"
             package_id = "OnBoard.App.OnboardingApp"
             properties = {
                 SelectionMode = "immediate"
@@ -47,7 +49,8 @@ step "Deploy to IIS" {
     }
 }
 
-step "Deploy to IIS - clone (1)" {
+step "deploy-to-iis-clone-1" {
+    name = "Deploy to IIS - clone (1)"
     properties = {
         Octopus.Action.TargetRoles = "Test"
     }
@@ -75,19 +78,20 @@ step "Deploy to IIS - clone (1)" {
             Octopus.Action.Package.CustomInstallationDirectory = "C:\\custominstalldir\\"
             Octopus.Action.Package.CustomInstallationDirectoryShouldBePurgedBeforeDeployment = "True"
             Octopus.Action.Package.DownloadOnTentacle = "False"
-            Octopus.Action.Package.FeedId = "Local Feed"
+            Octopus.Action.Package.FeedId = "local-feed"
             Octopus.Action.Package.PackageId = "OnboardingApp"
+            Octopus.Action.RunOnServer = "false"
             Octopus.Action.SubstituteInFiles.OutputEncoding = "utf-8"
             Octopus.Action.SubstituteInFiles.TargetFiles = <<-EOT
                 **\Web.Development.config
                 
-            EOT
+                EOT
         }
         worker_pool_variable = ""
 
         packages {
             acquisition_location = "Server"
-            feed = "Local Feed"
+            feed = "local-feed"
             package_id = "OnboardingApp"
             properties = {
                 SelectionMode = "immediate"
@@ -96,7 +100,8 @@ step "Deploy to IIS - clone (1)" {
     }
 }
 
-step "Run a Script" {
+step "run-a-script" {
+    name = "Run a Script"
     properties = {
         Octopus.Action.TargetRoles = "Dev"
     }
@@ -109,7 +114,7 @@ step "Run a Script" {
             Octopus.Action.Script.ScriptBody = <<-EOT
                 Write-Host #{Scopethis}
                 Write-Host #{Unscopethis}
-            EOT
+                EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
