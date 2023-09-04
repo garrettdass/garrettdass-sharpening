@@ -52,7 +52,7 @@ step "deploy-to-iis" {
 step "deploy-to-iis-clone-1" {
     name = "Deploy to IIS - clone (1)"
     properties = {
-        Octopus.Action.TargetRoles = "Test"
+        Octopus.Action.TargetRoles = "Test,Dev,Linux,Prod"
     }
     start_trigger = "StartWithPrevious"
 
