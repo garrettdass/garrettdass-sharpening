@@ -1,5 +1,3 @@
-connectivity_policy {
-}
+connectivity_policy {}
 
-versioning_strategy {
-}
+versioning_strategy {}

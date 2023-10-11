@@ -1,4 +1,5 @@
-step "Run a Script" {
+step "run-a-script" {
+    name = "Run a Script"
     properties = {
         Octopus.Action.TargetRoles = "Test"
     }
@@ -25,7 +26,7 @@ step "Run a Script" {
                  } else {
                  	write-host \"File '$configFilePath' not found\"
                  }"
-            EOT
+                EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "Bash"
         }
