@@ -11,7 +11,7 @@ step "run-a-script" {
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.PackageId = "artifactory-docker-test"
             Octopus.Action.RunOnServer = "false"
-            Octopus.Action.Script.ScriptFileName = "probably.ps1"
+            Octopus.Action.Script.ScriptFileName = "scriptfileinsideapackage.ps1"
             Octopus.Action.Script.ScriptSource = "Package"
         }
         worker_pool_variable = ""
@@ -25,12 +25,12 @@ step "run-a-script" {
             }
         }
 
-        packages "artifactory-docker-test" {
+        packages "dummyservice" {
             acquisition_location = "Server"
             feed = "octopus-server-built-in"
-            package_id = "artifactory-docker-test"
+            package_id = "dummyservice"
             properties = {
-                Extract = "True"
+                Extract = "False"
                 Purpose = ""
                 SelectionMode = "immediate"
             }
