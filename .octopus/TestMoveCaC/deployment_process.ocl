@@ -7,30 +7,34 @@ step "run-a-script" {
     action {
         action_type = "Octopus.Script"
         properties = {
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
+            Octopus.Action.Package.PackageId = "artifactory-docker-test"
             Octopus.Action.RunOnServer = "false"
-            Octopus.Action.Script.ScriptBody = <<-EOT
-                version=$(get_octopusvariable "Octopus.Release.Number")
-                 configFolderPath=/etc/archlogs
-                 configFilePath=$configFolderPath/localconfig.json
-                 #test1
-                 sudo pwsh -noprofile -Command "
-                 if (\$(Test-Path $configFilePath) -eq \$true) {
-                 	try{
-                     	\$json = get-content $configFilePath | Out-String | ConvertFrom-Json
-                         \$json | Add-Member -Name \"CustomTags\" -value @{InstalledBy = \"Octopus\"; Version = \"$version\" } -MemberType NoteProperty
-                         \$json | ConvertTo-Json | Out-File $configFilePath -Encoding ascii
-                     }
-                     catch{
-                     	write_warning \"Could not add 'CustomTags', the process ended with an error: \$(\$_.Exception.Message)\"
-                     }  
-                 } else {
-                 	write-host \"File '$configFilePath' not found\"
-                 }"
-                EOT
-            Octopus.Action.Script.ScriptSource = "Inline"
-            Octopus.Action.Script.Syntax = "Bash"
+            Octopus.Action.Script.ScriptFileName = "probably.ps1"
+            Octopus.Action.Script.ScriptSource = "Package"
         }
         worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "artifactory-docker-test"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+
+        packages "artifactory-docker-test" {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "artifactory-docker-test"
+            properties = {
+                Extract = "True"
+                Purpose = ""
+                SelectionMode = "immediate"
+            }
+        }
     }
 }
 
