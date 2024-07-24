@@ -1,0 +1,3 @@
+variable "TestnonsensiOnBranch" {
+    value "V1" {}
+}
