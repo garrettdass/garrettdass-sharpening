@@ -3,5 +3,5 @@ variable "ObjectTesting2" {
 }
 
 variable "Test2" {
-    value "2" {}
+    value "3" {}
 }
