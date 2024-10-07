@@ -1,3 +1,7 @@
 variable "ObjectTesting2" {
     value "2" {}
 }
+
+variable "Test" {
+    value "1" {}
+}
