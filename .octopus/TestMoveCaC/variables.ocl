@@ -1,7 +1,7 @@
-variable "MainBranchVar" {
-    value "1" {}
-}
-
 variable "Testsensi3" {
     value "5" {}
+}
+
+variable "MainBranchVar" {
+    value "2" {}
 }
