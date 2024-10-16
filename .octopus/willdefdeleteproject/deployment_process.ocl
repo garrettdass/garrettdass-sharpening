@@ -1,54 +1,34 @@
-step "manual-intervention-required" {
-    name = "Manual Intervention Required"
+step "deploy-a-windows-service" {
+    name = "Deploy a Windows Service"
+    properties = {
+        Octopus.Action.TargetRoles = "Prod"
+    }
 
     action {
-        action_type = "Octopus.Manual"
+        action_type = "Octopus.WindowsService"
         properties = {
-            Octopus.Action.Manual.BlockConcurrentDeployments = "False"
-            Octopus.Action.Manual.Instructions = "dsadsadsa"
-            Octopus.Action.RunOnServer = "false"
-        }
-    }
-}
-
-step "deploy-a-package" {
-    name = "Deploy a Package"
-    properties = {
-        Octopus.Action.TargetRoles = "Dev"
-    }
-
-    action "deploy-a-package" {
-        action_type = "Octopus.TentaclePackage"
-        name = "Deploy a Package"
-        properties = {
-            Octopus.Action.EnabledFeatures = ",Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
+            Octopus.Action.EnabledFeatures = ",Octopus.Features.WindowsService,Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
             Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
             Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
-            Octopus.Action.Package.PackageId = "willdelete"
-            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Package.PackageId = "dummyservice"
+            Octopus.Action.WindowsService.CreateOrUpdateService = "True"
+            Octopus.Action.WindowsService.DesiredStatus = "Default"
+            Octopus.Action.WindowsService.DisplayName = "bigservice"
+            Octopus.Action.WindowsService.ServiceAccount = "LocalSystem"
+            Octopus.Action.WindowsService.ServiceName = "bigservice"
+            Octopus.Action.WindowsService.StartMode = "auto"
         }
         worker_pool_variable = ""
 
         packages {
             acquisition_location = "Server"
             feed = "octopus-server-built-in"
-            package_id = "willdelete"
+            package_id = "dummyservice"
             properties = {
                 SelectionMode = "immediate"
             }
         }
-    }
-
-    action "run-a-script" {
-        action_type = "Octopus.Script"
-        name = "Run a Script"
-        properties = {
-            Octopus.Action.Script.ScriptBody = "write-host test"
-            Octopus.Action.Script.ScriptSource = "Inline"
-            Octopus.Action.Script.Syntax = "PowerShell"
-        }
-        worker_pool_variable = "New Worker Pool"
     }
 }
