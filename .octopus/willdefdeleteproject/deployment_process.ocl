@@ -1,7 +1,7 @@
 step "deploy-a-windows-service" {
     name = "Deploy a Windows Service"
     properties = {
-        Octopus.Action.TargetRoles = "Prod"
+        Octopus.Action.TargetRoles = "Prod,Dev"
     }
 
     action {
