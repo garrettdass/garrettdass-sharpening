@@ -1,8 +1,6 @@
-connectivity_policy {
-}
+connectivity_policy {}
 
 versioning_strategy {
-
     donor_package {
         step = "Deploy to IIS"
     }
