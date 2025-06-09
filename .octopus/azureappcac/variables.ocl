@@ -1,0 +1,31 @@
+variable "octoRole" {
+    value "azure-web-app" {}
+}
+
+variable "octoWorkerPool" {
+    type = "WorkerPool"
+
+    value "hosted-windows" {}
+}
+
+variable "rgRegion" {
+    value "westus" {}
+}
+
+variable "TestingAzureAcctVariable" {
+    type = "AzureAccount"
+
+    value "azure-support-sandbox" {}
+}
+
+variable "uniqueName" {
+    value "#{userPrefix}-#{Octopus.Project.Id}" {}
+}
+
+variable "userPrefix" {
+    value "patricksmergut" {}
+}
+
+variable "websiteLiveTime" {
+    value "300" {}
+}
