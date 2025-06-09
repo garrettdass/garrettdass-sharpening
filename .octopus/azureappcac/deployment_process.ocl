@@ -33,7 +33,7 @@ step "create-test-web-service" {
                 # Create new target in Octopus
                 New-OctopusAzureWebAppTarget -Name $uniqueName -AzureWebApp $uniqueName -AzureResourceGroupName $uniqueName -OctopusRoles $octoRole -OctopusDefaultWorkerPoolIdOrName $octoWorkerPool
                 
-            EOT
+                EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
@@ -125,7 +125,7 @@ step "tear-down-test-web-service" {
                 #Remove-AzureRmResourceGroup -Name $uniqueName -Force
                 az group delete --name $uniqueName --yes
                 Remove-OctopusTarget -targetIdOrName $uniqueName
-            EOT
+                EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
