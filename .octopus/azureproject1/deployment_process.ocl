@@ -1,0 +1,19 @@
+step "run-a-script" {
+    name = "Run a Script"
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.Script.ScriptBody = "write-host \"hello world\""
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "hosted-ubuntu"
+
+        container {
+            feed = "docker"
+            image = "octopusdeploy/worker-tools:6.4.0-ubuntu.22.04"
+        }
+    }
+}
