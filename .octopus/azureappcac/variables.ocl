@@ -2,12 +2,6 @@ variable "octoRole" {
     value "azure-web-app" {}
 }
 
-variable "octoWorkerPool" {
-    type = "WorkerPool"
-
-    value "hosted-windows" {}
-}
-
 variable "rgRegion" {
     value "westus" {}
 }
@@ -28,4 +22,10 @@ variable "userPrefix" {
 
 variable "websiteLiveTime" {
     value "300" {}
+}
+
+variable "octoWorkerPool" {
+    type = "WorkerPool"
+
+    value "hosted-ubuntu" {}
 }
