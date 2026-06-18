@@ -13,3 +13,169 @@ step "run-a-script-cac" {
         worker_pool_variable = ""
     }
 }
+
+step "configure-and-apply-kubernetes-resources" {
+    name = "Configure and apply Kubernetes resources"
+    properties = {
+        Octopus.Action.TargetRoles = "Prod"
+    }
+
+    action {
+        action_type = "Octopus.KubernetesDeployContainers"
+        properties = {
+            Octopus.Action.EnabledFeatures = ",Octopus.Features.KubernetesService,Octopus.Features.KubernetesIngress,Octopus.Features.KubernetesConfigMap,Octopus.Features.KubernetesSecret"
+            Octopus.Action.Kubernetes.DeploymentTimeout = "180"
+            Octopus.Action.Kubernetes.ResourceStatusCheck = "True"
+            Octopus.Action.Kubernetes.ServerSideApply.Enabled = "True"
+            Octopus.Action.Kubernetes.ServerSideApply.ForceConflicts = "True"
+            Octopus.Action.KubernetesContainers.Containers = <<-EOT
+                [
+                 {
+                  "Name": "test1",
+                  "FeedId": "Feeds-1363",
+                  "Ports": [],
+                  "EnvironmentVariables": [],
+                  "SecretEnvironmentVariables": [],
+                  "ConfigMapEnvironmentVariables": [],
+                  "FieldRefEnvironmentVariables": [],
+                  "ConfigMapEnvFromSource": [],
+                  "SecretEnvFromSource": [],
+                  "VolumeMounts": [],
+                  "Resources": {
+                   "requests": {
+                    "memory": "",
+                    "cpu": "",
+                    "ephemeralStorage": "",
+                    "amdGpu": "",
+                    "nvidiaGpu": "",
+                    "storage": ""
+                   },
+                   "limits": {
+                    "memory": "",
+                    "cpu": "",
+                    "ephemeralStorage": "",
+                    "amdGpu": "",
+                    "nvidiaGpu": "",
+                    "storage": ""
+                   }
+                  },
+                  "LivenessProbe": {
+                   "failureThreshold": "",
+                   "initialDelaySeconds": "",
+                   "periodSeconds": "",
+                   "successThreshold": "",
+                   "timeoutSeconds": "",
+                   "type": "",
+                   "exec": {
+                    "command": []
+                   },
+                   "httpGet": {
+                    "host": "",
+                    "path": "",
+                    "port": "",
+                    "scheme": "",
+                    "httpHeaders": []
+                   },
+                   "tcpSocket": {
+                    "host": "",
+                    "port": ""
+                   }
+                  },
+                  "ReadinessProbe": {
+                   "failureThreshold": "",
+                   "initialDelaySeconds": "",
+                   "periodSeconds": "",
+                   "successThreshold": "",
+                   "timeoutSeconds": "",
+                   "type": "",
+                   "exec": {
+                    "command": []
+                   },
+                   "httpGet": {
+                    "host": "",
+                    "path": "",
+                    "port": "",
+                    "scheme": "",
+                    "httpHeaders": []
+                   },
+                   "tcpSocket": {
+                    "host": "",
+                    "port": ""
+                   }
+                  },
+                  "StartupProbe": {
+                   "failureThreshold": "",
+                   "initialDelaySeconds": "",
+                   "periodSeconds": "",
+                   "successThreshold": "",
+                   "timeoutSeconds": "",
+                   "type": "",
+                   "exec": {
+                    "command": []
+                   },
+                   "httpGet": {
+                    "host": "",
+                    "path": "",
+                    "port": "",
+                    "scheme": "",
+                    "httpHeaders": []
+                   },
+                   "tcpSocket": {
+                    "host": "",
+                    "port": ""
+                   }
+                  },
+                  "Command": [],
+                  "Args": [],
+                  "SecurityContext": {
+                   "allowPrivilegeEscalation": "",
+                   "privileged": "",
+                   "readOnlyRootFilesystem": "",
+                   "runAsGroup": "",
+                   "runAsNonRoot": "",
+                   "runAsUser": "",
+                   "capabilities": {
+                    "add": [],
+                    "drop": []
+                   },
+                   "seLinuxOptions": {
+                    "level": "",
+                    "role": "",
+                    "type": "",
+                    "user": ""
+                   }
+                  },
+                  "TerminationMessagePath": "",
+                  "TerminationMessagePolicy": "",
+                  "Lifecycle": {
+                   "PreStop": null,
+                   "PostStart": null
+                  },
+                  "CreateFeedSecrets": "True"
+                 }
+                ]
+                EOT
+            Octopus.Action.KubernetesContainers.DeploymentName = "test"
+            Octopus.Action.KubernetesContainers.DeploymentResourceType = "Deployment"
+            Octopus.Action.KubernetesContainers.DeploymentStyle = "RollingUpdate"
+            Octopus.Action.KubernetesContainers.IngressAnnotations = "[]"
+            Octopus.Action.KubernetesContainers.PodManagementPolicy = "OrderedReady"
+            Octopus.Action.KubernetesContainers.Replicas = "1"
+            Octopus.Action.KubernetesContainers.ServiceNameType = "External"
+            Octopus.Action.KubernetesContainers.ServiceType = "ClusterIP"
+        }
+        worker_pool = "aws-ec2"
+        worker_pool_variable = ""
+
+        packages "test1" {
+            acquisition_location = "NotAcquired"
+            feed = "docker"
+            package_id = "techierishi/jstodo"
+            properties = {
+                Extract = "False"
+                PackageParameterName = ""
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
