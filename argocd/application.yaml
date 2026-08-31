@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-demo
+  namespace: argocd
+  # Optional. Uncomment and set the slug of your image-tag Octopus project to
+  # drive this app's tag from Octopus as well. Note that the step acts on every
+  # application matching the project and environment slugs, so with these set
+  # a deployment to Development updates this app AND demo-development in the
+  # same run — a deliberate multi-application demo, not a mistake.
+  #
+  # annotations:
+  #   argo.octopus.com/project: your-project-slug
+  #   argo.octopus.com/environment: development
+spec:
+  project: default
+
+  source:
+    # >>> replace with your repo <<<
+    repoURL: https://github.com/YOUR-ORG/argocd-demo-app.git
+    targetRevision: main
+    path: single
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd-demo
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+
+    # Leave this commented out for the first few demos: you want the app to
+    # sit visibly OutOfSync after a commit so you can point at it, then hit
+    # Sync. Uncomment once you want to show hands-off drift correction.
+    #
+    # automated:
+    #   prune: true
+    #   selfHeal: true
+
+  revisionHistoryLimit: 3
