@@ -24,7 +24,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/garrettdass/garrettdass-sharpening.git
+        repoURL: https://github.com/garrettdass/garrettdass-sharpening.git/
         targetRevision: main
         path: helm/demo-web
         helm:
