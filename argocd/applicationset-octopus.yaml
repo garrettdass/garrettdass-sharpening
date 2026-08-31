@@ -27,7 +27,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/garrettdass/garrettdass-sharpening.git
+        repoURL: https://github.com/garrettdass/garrettdass-sharpening.git/
         targetRevision: main
         # Octopus commits the populated templates here.
         path: 'octopus-managed/{{.env}}'
