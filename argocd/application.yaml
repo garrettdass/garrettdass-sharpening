@@ -10,8 +10,8 @@ metadata:
   # same run — a deliberate multi-application demo, not a mistake.
   #
   # annotations:
-  #   argo.octopus.com/project: your-project-slug
-  #   argo.octopus.com/environment: development
+     argo.octopus.com/project: project-1
+     argo.octopus.com/environment: development
 spec:
   project: default
 
