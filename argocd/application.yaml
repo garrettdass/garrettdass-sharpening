@@ -9,7 +9,7 @@ metadata:
   # a deployment to Development updates this app AND demo-development in the
   # same run — a deliberate multi-application demo, not a mistake.
   #
-  # annotations:
+  annotations:
      argo.octopus.com/project: project-1
      argo.octopus.com/environment: development
 spec:
