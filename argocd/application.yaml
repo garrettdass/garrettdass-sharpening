@@ -3,15 +3,17 @@ kind: Application
 metadata:
   name: argocd-demo
   namespace: argocd
+  annotations:
+    demo.example.com/touched-by: app-of-apps
   # Optional. Uncomment and set the slug of your image-tag Octopus project to
   # drive this app's tag from Octopus as well. Note that the step acts on every
   # application matching the project and environment slugs, so with these set
   # a deployment to Development updates this app AND demo-development in the
   # same run — a deliberate multi-application demo, not a mistake.
   #
-  annotations:
-     argo.octopus.com/project: project-1
-     argo.octopus.com/environment: development
+ # annotations:
+ #    argo.octopus.com/project: project-1
+ #    argo.octopus.com/environment: development
 spec:
   project: default
 
