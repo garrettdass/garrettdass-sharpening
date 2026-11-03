@@ -11,7 +11,7 @@ step "run-a-script" {
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.PackageId = "artifactory-docker-test"
             Octopus.Action.RunOnServer = "false"
-            Octopus.Action.Script.ScriptFileName = "scriptfileinsideapackage.ps1"
+            Octopus.Action.Script.ScriptFileName = "scriptfileinsideapackage1.ps1"
             Octopus.Action.Script.ScriptSource = "Package"
         }
         worker_pool_variable = ""
@@ -73,6 +73,7 @@ step "deploy-a-bicep-template" {
     package_requirement = "AfterPackageAcquisition"
 
     action {
+        action_type = "Octopus.AzureDeployBicepTemplate"
         properties = {
             Octopus.Action.Azure.BicepTemplateSourceCode = <<-EOT
                 param location string = resourceGroup().location
@@ -97,6 +98,5 @@ step "deploy-a-bicep-template" {
             Octopus.Action.RunOnServer = "true"
         }
         worker_pool_variable = ""
-        action_type = "Octopus.AzureDeployBicepTemplate"
     }
 }
