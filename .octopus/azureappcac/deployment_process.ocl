@@ -30,7 +30,7 @@ step "create-test-web-service" {
                 #New-AzureRmWebApp -Name $uniqueName -Location $rgLocation -AppServicePlan $uniqueName -ResourceGroupName $uniqueName
                 az webapp create --name $uniquename --resource-group $uniqueName --plan $uniqueName
                 
-                # Create new target in Octopus
+                # Create new target in Octopus 1
                 New-OctopusAzureWebAppTarget -Name $uniqueName -AzureWebApp $uniqueName -AzureResourceGroupName $uniqueName -OctopusRoles $octoRole -OctopusDefaultWorkerPoolIdOrName $octoWorkerPool
                 
                 EOT
